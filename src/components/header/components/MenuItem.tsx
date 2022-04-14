@@ -1,9 +1,16 @@
 import React from 'react';
+import { HashLink } from 'react-router-hash-link';
 
 export const MenuListItem = (props: { path: string; title: string }) => {
+  const path: string = `/#${props.path}`;
   return (
     <div className="MenuListItem">
-      <a href={props.path}>{props.title}</a>
+      <HashLink
+        scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
+        to={path}
+      >
+        {props.title}
+      </HashLink>
     </div>
   );
 };

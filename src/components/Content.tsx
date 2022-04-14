@@ -10,6 +10,7 @@ export const Content = () => {
       imagePath: '/assets/trees.jpg',
       imageAlt: 'imageAlt',
       reverse: false,
+      anchor: 'landskap',
     },
     {
       title: 'Gamla byggnader',
@@ -17,6 +18,7 @@ export const Content = () => {
       imagePath: '/assets/fonster.png',
       imageAlt: 'imageAlt',
       reverse: true,
+      anchor: 'gamla-byggnader',
     },
   ];
 
@@ -24,13 +26,16 @@ export const Content = () => {
     <>
       <Typography>Content</Typography>
       {categories.map((category) => (
-        <Category
-          title={category.title}
-          information={category.information}
-          imagePath={category.imagePath}
-          imageAlt={category.imagePath}
-          position={category.reverse}
-        />
+        <div className="category-section" key={category.title}>
+          <Category
+            title={category.title}
+            information={category.information}
+            imagePath={category.imagePath}
+            imageAlt={category.imagePath}
+            position={category.reverse}
+            anchor={category.anchor}
+          />
+        </div>
       ))}
     </>
   );

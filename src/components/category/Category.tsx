@@ -7,6 +7,7 @@ interface ICategory {
   imagePath: string;
   imageAlt: string;
   position: boolean;
+  anchor: string;
 }
 
 export const Category = (props: ICategory) => {
@@ -15,7 +16,8 @@ export const Category = (props: ICategory) => {
       container
       display="flex"
       alignItems="center"
-      justifyContent={props.position ? 'column-reverse' : 'column'}
+      justifyContent={props.position ? 'row-reverse' : 'row'}
+      id={props.anchor}
     >
       <Grid item className="categoryInformation">
         <Typography variant="h2">{props.title}</Typography>

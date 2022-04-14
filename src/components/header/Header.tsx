@@ -1,17 +1,15 @@
+import { Grid } from '@mui/material';
 import React from 'react';
 import { MenuListItem } from './components';
 
-const menuItems = ['Landskap', 'Gamla byggnader'];
-
 export const Header = () => {
   return (
-    <>
+    <Grid container display="flex" justifyContent="row">
       <span>LOGO</span>
       <ul>
-        {menuItems.map((item) => (
-          <MenuListItem path={item} title={item} />
-        ))}
+        <MenuListItem path="landskap" title="Landskap" />
+        <MenuListItem path="gamla-byggnader" title="Gamla byggnader" />
       </ul>
-    </>
+    </Grid>
   );
 };
