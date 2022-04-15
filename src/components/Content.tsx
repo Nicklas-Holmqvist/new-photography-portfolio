@@ -1,8 +1,11 @@
-import { Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { Category } from './index';
 
 export const Content = () => {
+  const style = {
+    width: '100%',
+  };
   const categories = [
     {
       title: 'Landskap',
@@ -23,8 +26,7 @@ export const Content = () => {
   ];
 
   return (
-    <>
-      <Typography>Content</Typography>
+    <Grid style={style}>
       {categories.map((category) => (
         <div className="category-section" key={category.title}>
           <Category
@@ -37,6 +39,6 @@ export const Content = () => {
           />
         </div>
       ))}
-    </>
+    </Grid>
   );
 };
