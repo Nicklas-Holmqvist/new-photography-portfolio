@@ -1,8 +1,17 @@
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { Gallery } from './gallery';
 import { Category } from './index';
 
 export const Content = () => {
+  const [activeGallery, setActiveGallery] = useState(false);
+  const [gallery, setGallery] = useState(undefined);
+
+  const openGallery = (gallaryItem: any) => {
+    setActiveGallery(!activeGallery);
+    console.log(gallaryItem);
+  };
+
   const style = {
     width: '100%',
   };
@@ -21,7 +30,7 @@ export const Content = () => {
       imagePath: '/assets/fonster.png',
       imageAlt: 'imageAlt',
       reverse: true,
-      anchor: 'gamla-byggnader',
+      anchor: 'gamlaByggnader',
     },
   ];
 
@@ -36,9 +45,11 @@ export const Content = () => {
             imageAlt={category.imagePath}
             position={category.reverse}
             anchor={category.anchor}
+            openGallery={openGallery}
           />
         </div>
       ))}
+      <Gallery gallery={gallery} />
     </Grid>
   );
 };

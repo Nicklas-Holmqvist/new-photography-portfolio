@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
 
 interface ICategory {
@@ -8,6 +8,7 @@ interface ICategory {
   imageAlt: string;
   position: boolean;
   anchor: string;
+  openGallery: Function;
 }
 
 export const Category = (props: ICategory) => {
@@ -50,10 +51,22 @@ export const Category = (props: ICategory) => {
             {props.title}
           </Typography>
           <Typography>{props.information}</Typography>
+          <Button
+            onClick={() => {
+              props.openGallery(props.anchor);
+            }}
+          >
+            Visa galleri
+          </Button>
         </Grid>
       </Grid>
       <Grid item className="categoryImage">
-        <img src={props.imagePath} alt={props.imageAlt} style={style.image} />
+        <img
+          src={props.imagePath}
+          alt={props.imageAlt}
+          style={style.image}
+          loading="lazy"
+        />
       </Grid>
     </Grid>
   );

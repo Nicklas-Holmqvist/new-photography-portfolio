@@ -25,7 +25,7 @@ export const Header = () => {
       <span>LOGO</span>
       <ul style={style.list}>
         <MenuListItem path="landskap" title="Landskap" />
-        <MenuListItem path="gamla-byggnader" title="Gamla byggnader" />
+        <MenuListItem path="gamlaByggnader" title="Gamla byggnader" />
       </ul>
     </Grid>
   );
