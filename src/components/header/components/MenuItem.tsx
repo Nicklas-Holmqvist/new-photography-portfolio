@@ -1,21 +1,17 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 export const MenuListItem = (props: { path: string; title: string }) => {
-  const path: string = `/#${props.path}`;
+  const path: string = `/gallery/${props.path}`;
   const style = {
     textDecoration: 'none',
   };
   return (
     <Grid>
-      <HashLink
-        style={style}
-        scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
-        to={path}
-      >
+      <Link style={style} to={path}>
         {props.title}
-      </HashLink>
+      </Link>
     </Grid>
   );
 };

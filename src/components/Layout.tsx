@@ -6,7 +6,7 @@ import { LandingPage, Footer, Header } from './index';
 
 const Layout = () => {
   const style = {
-    maxWidth: 1400,
+    maxWidth: 1200,
     width: '100%',
     margin: 'auto',
   };
