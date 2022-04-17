@@ -1,5 +1,6 @@
 import { ImageList, ImageListItem } from '@mui/material';
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 export interface IGallery {
   imagePath: string;
@@ -8,7 +9,8 @@ export interface IGallery {
   gallery: string;
 }
 
-export const Gallery = (props: { gallery: string | undefined }) => {
+export const Gallery = () => {
+  const params = useParams();
   const gallery: IGallery[] = [
     {
       imagePath: '/assets/fonster.png',
@@ -95,10 +97,7 @@ export const Gallery = (props: { gallery: string | undefined }) => {
       gallery: 'landskap',
     },
   ];
-
-  const selectedGallery = gallery.filter(
-    (item) => item.gallery === props.gallery
-  );
+  const selectedGallery = gallery.filter((item) => item.gallery === params.id);
 
   return (
     <ImageList variant="masonry" cols={2} gap={0}>

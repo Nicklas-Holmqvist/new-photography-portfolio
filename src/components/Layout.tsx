@@ -1,6 +1,8 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { Content, Footer, Header } from './index';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Gallery } from './gallery';
+import { LandingPage, Footer, Header } from './index';
 
 const Layout = () => {
   const style = {
@@ -10,9 +12,14 @@ const Layout = () => {
   };
   return (
     <Grid container display="flex" justifyContent="column" style={style}>
-      <Header />
-      <Content />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/gallery/:id" element={<Gallery />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </Grid>
   );
 };

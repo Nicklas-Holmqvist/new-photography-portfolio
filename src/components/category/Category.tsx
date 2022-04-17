@@ -1,5 +1,6 @@
 import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ICategory {
   title: string;
@@ -8,10 +9,10 @@ interface ICategory {
   imageAlt: string;
   position: boolean;
   anchor: string;
-  openGallery: Function;
 }
 
 export const Category = (props: ICategory) => {
+  const navigate = useNavigate();
   const style = {
     container: {
       width: '100%',
@@ -53,7 +54,7 @@ export const Category = (props: ICategory) => {
           <Typography>{props.information}</Typography>
           <Button
             onClick={() => {
-              props.openGallery(props.anchor);
+              navigate(`/gallery/${props.anchor}`);
             }}
           >
             Visa galleri
