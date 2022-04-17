@@ -19,7 +19,7 @@ export const Category = (props: ICategory) => {
       padding: '40px 0',
     },
     categoryInformation: {
-      maxWidth: 600,
+      maxWidth: 500,
       width: '100%',
       paddingLeft: 40,
     },
@@ -27,7 +27,7 @@ export const Category = (props: ICategory) => {
       paddingBottom: '1rem',
     },
     image: {
-      maxWidth: 800,
+      maxWidth: 700,
       width: '100%',
     },
   };
@@ -53,6 +53,7 @@ export const Category = (props: ICategory) => {
           </Typography>
           <Typography>{props.information}</Typography>
           <Button
+            variant="outlined"
             onClick={() => {
               navigate(`/gallery/${props.anchor}`);
             }}

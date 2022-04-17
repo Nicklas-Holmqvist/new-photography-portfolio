@@ -11,7 +11,13 @@ const Layout = () => {
     margin: 'auto',
   };
   return (
-    <Grid container display="flex" justifyContent="column" style={style}>
+    <Grid
+      container
+      display="flex"
+      justifyContent="column"
+      style={style}
+      position="relative"
+    >
       <BrowserRouter>
         <Header />
         <Routes>
