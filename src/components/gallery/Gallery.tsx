@@ -1,4 +1,3 @@
-import { TransgenderTwoTone } from '@mui/icons-material';
 import { Grid, ImageList, ImageListItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -141,7 +140,7 @@ export const Gallery = () => {
     const imageIndex = showGallery.findIndex(
       (e) => e.id === Number(id.target.id)
     );
-    if (id.target.title === 'back') {
+    if (id.target.alt === 'back') {
       if (imageIndex <= 0) return;
       setModalImage(showGallery[imageIndex - 1]);
     } else {

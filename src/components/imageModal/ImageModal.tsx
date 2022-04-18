@@ -2,6 +2,9 @@ import React from 'react';
 import { IGallery } from '../gallery';
 import Modal from '@mui/material/Modal';
 import { Grid } from '@mui/material';
+import BackIcon from '../utils/icons/backIcon.png';
+import ForwardIcon from '../utils/icons/forwardIcon.png';
+
 export const ImageModal = (props: {
   image: any;
   open: boolean;
@@ -23,20 +26,6 @@ export const ImageModal = (props: {
       width: '100%',
     },
   };
-  // console.log(props.image);
-
-  // const goBack = (id: any) => {
-  //   const imageId = id.target.id;
-  //   const imageIndex = props.imageGallery.findIndex(
-  //     (e) => e.id == id.target.id
-  //   );
-  //   if (imageIndex <= 0) return;
-  //   console.log({ BACK: imageIndex });
-  // };
-
-  // const goForward = (id: any) => {
-  //   console.log({ FORWARD: id.target.id });
-  // };
   return (
     <Grid container position="relative" style={style.modalContainer}>
       <Modal
@@ -50,30 +39,32 @@ export const ImageModal = (props: {
         <Grid
           display="flex"
           flexDirection="row"
+          justifyContent="center"
+          alignItems="center"
           item
           style={style.imageContainer}
           position="absolute"
         >
-          <h2
+          <img
             id={props.image.id}
-            title="back"
+            src={BackIcon}
+            alt="back"
             onClick={props.handleModalCarousele}
-          >
-            BAK
-          </h2>
+            style={{ color: 'white', paddingRight: '1rem', cursor: 'pointer' }}
+          />
           <img
             src={props.image.imagePath}
             alt={props.image.imageAlt}
             loading="lazy"
             style={style.image}
           />
-          <h2
+          <img
             id={props.image.id}
-            title="forward"
+            src={ForwardIcon}
+            alt="forward"
             onClick={props.handleModalCarousele}
-          >
-            FRAMÅT
-          </h2>
+            style={{ color: 'white', paddingLeft: '1rem', cursor: 'pointer' }}
+          />
         </Grid>
       </Modal>
     </Grid>
