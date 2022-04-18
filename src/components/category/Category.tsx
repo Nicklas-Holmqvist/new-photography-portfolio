@@ -15,8 +15,10 @@ export const Category = (props: ICategory) => {
   const navigate = useNavigate();
   const style = {
     container: {
+      maxWidth: 1200,
       width: '100%',
       padding: '40px 0',
+      margin: 'auto',
     },
     categoryInformation: {
       maxWidth: 500,

@@ -4,7 +4,14 @@ import { Category } from './index';
 
 export const LandingPage = () => {
   const style = {
-    width: '100%',
+    container: { width: '100%' },
+    hero: {
+      height: '100vh',
+      backgroundImage: 'url("/assets/hero.png")',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'none',
+      backgroundSize: 'cover',
+    },
   };
   const categories = [
     {
@@ -13,7 +20,7 @@ export const LandingPage = () => {
       imagePath: '/assets/trees.jpg',
       imageAlt: 'imageAlt',
       reverse: false,
-      anchor: 'landskap',
+      anchor: 'landscape',
     },
     {
       title: 'Gamla byggnader',
@@ -21,12 +28,13 @@ export const LandingPage = () => {
       imagePath: '/assets/fonster.png',
       imageAlt: 'imageAlt',
       reverse: true,
-      anchor: 'gamlaByggnader',
+      anchor: 'oldBuildings',
     },
   ];
 
   return (
-    <Grid style={style}>
+    <Grid style={style.container}>
+      <Grid item style={style.hero}></Grid>
       {categories.map((category) => (
         <div className="category-section" key={category.title}>
           <Category
