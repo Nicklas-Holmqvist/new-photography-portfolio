@@ -1,7 +1,9 @@
-import { Grid, ImageList, ImageListItem } from '@mui/material';
+import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ImageModal } from '../imageModal';
+import { useNavigate } from 'react-router-dom';
+import BackIcon from '../utils/icons/backIconBlack.png';
 
 export interface IGallery {
   id: number;
@@ -103,11 +105,18 @@ export const Gallery = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
   const style = {
-    maxWidth: 1200,
-    width: '100%',
-    paddingTop: 60,
-    margin: 'auto',
+    container: {
+      maxWidth: 1200,
+      width: '100%',
+      paddingTop: '6rem',
+      margin: 'auto',
+    },
+    link: {
+      cursor: 'pointer',
+    },
   };
 
   useEffect(() => {
@@ -150,7 +159,7 @@ export const Gallery = () => {
   };
 
   return (
-    <Grid container style={style}>
+    <Grid container style={style.container}>
       {openModal && (
         <ImageModal
           image={modalImage}
@@ -160,6 +169,26 @@ export const Gallery = () => {
           handleModalCarousele={handleModalCarousele}
         />
       )}
+      <Grid
+        item
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        onClick={() => navigate('/')}
+      >
+        <img
+          src={BackIcon}
+          alt="back"
+          style={{
+            height: '1rem',
+            width: '.5rem',
+            paddingRight: '0.8rem',
+            marginTop: '-2px',
+            cursor: 'pointer',
+          }}
+        />
+        <Typography style={style.link}>Gå tillbaka</Typography>
+      </Grid>
       <ImageList variant="masonry" cols={2} gap={0}>
         {showGallery.map((item) => (
           <>
