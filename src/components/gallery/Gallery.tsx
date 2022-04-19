@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ImageModal } from '../imageModal';
 import { useNavigate } from 'react-router-dom';
-import BackIcon from '../utils/icons/backIconBlack.png';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { gallery } from './images';
+import { galleryInformation } from './galleryInformation';
 
 export interface IGallery {
   id: number;
@@ -11,99 +13,19 @@ export interface IGallery {
   imageAlt: string;
   gallery: string;
 }
+export interface IGalleryInformation {
+  gallery: string;
+  title: string;
+  information: string;
+}
 
 export const Gallery = () => {
   const params = useParams();
   const [updateGallery, setUpdateGallery] = useState('');
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
+  const [information, setInformation] = useState<IGalleryInformation[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
-  const gallery: IGallery[] = [
-    {
-      id: 1,
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'old-builing-1',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 2,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'old-builing-2',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 3,
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'old-builing-3',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 4,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'old-builing-4',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 5,
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'old-builing-5',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 6,
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'old-builing-6',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 7,
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'old-builing-7',
-      gallery: 'oldBuildings',
-    },
-    {
-      id: 8,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-1',
-      gallery: 'landscape',
-    },
-    {
-      id: 9,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-2',
-      gallery: 'landscape',
-    },
-    {
-      id: 10,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-3',
-      gallery: 'landscape',
-    },
-    {
-      id: 11,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-4',
-      gallery: 'landscape',
-    },
-    {
-      id: 12,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-5',
-      gallery: 'landscape',
-    },
-    {
-      id: 13,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-6',
-      gallery: 'landscape',
-    },
-    {
-      id: 14,
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'landscape-7',
-      gallery: 'landscape',
-    },
-  ];
 
   const navigate = useNavigate();
 
@@ -126,6 +48,9 @@ export const Gallery = () => {
   }, [params]);
 
   useEffect(() => {
+    setInformation(
+      galleryInformation.filter((item) => item.gallery === updateGallery)
+    );
     setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
   }, [updateGallery]);
 
@@ -159,7 +84,12 @@ export const Gallery = () => {
   };
 
   return (
-    <Grid container style={style.container}>
+    <Grid
+      container
+      style={style.container}
+      display="flex"
+      flexDirection="column"
+    >
       {openModal && (
         <ImageModal
           image={modalImage}
@@ -174,22 +104,26 @@ export const Gallery = () => {
         display="flex"
         flexDirection="row"
         alignItems="center"
+        style={style.link}
         onClick={() => navigate('/')}
       >
-        <img
-          src={BackIcon}
-          alt="back"
-          style={{
-            height: '1rem',
-            width: '.5rem',
-            paddingRight: '0.8rem',
-            marginTop: '-2px',
-            cursor: 'pointer',
-          }}
-        />
-        <Typography style={style.link}>Gå tillbaka</Typography>
+        <ArrowBackIosNewIcon sx={{ pr: 1, fontSize: 16 }} />
+        <Typography>Gå tillbaka</Typography>
       </Grid>
-      <ImageList variant="masonry" cols={2} gap={0}>
+      {information.map((item) => (
+        <Grid
+          item
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          sx={{ py: 6 }}
+        >
+          <Typography variant="h3">{item.title}</Typography>
+          <Typography key={item.gallery}>{item.information}</Typography>
+        </Grid>
+      ))}
+      <ImageList variant="masonry" cols={3} gap={4}>
         {showGallery.map((item) => (
           <>
             <ImageListItem key={Number(item.id)}>

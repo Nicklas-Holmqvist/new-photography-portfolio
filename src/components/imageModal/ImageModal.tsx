@@ -1,9 +1,11 @@
 import React from 'react';
 import { IGallery } from '../gallery';
 import Modal from '@mui/material/Modal';
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosNewIcon from '@mui/icons-material/ArrowForwardIos';
 
 export const ImageModal = (props: {
   image: any;
@@ -49,7 +51,7 @@ export const ImageModal = (props: {
             id={props.image.id}
             src={BackIcon}
             alt="back"
-            onClick={props.handleModalCarousele}
+            onClick={(e) => props.handleModalCarousele(e)}
             style={{ color: 'white', paddingRight: '1rem', cursor: 'pointer' }}
           />
           <img
@@ -62,7 +64,7 @@ export const ImageModal = (props: {
             id={props.image.id}
             src={ForwardIcon}
             alt="forward"
-            onClick={props.handleModalCarousele}
+            onClick={(e) => props.handleModalCarousele(e)}
             style={{ color: 'white', paddingLeft: '1rem', cursor: 'pointer' }}
           />
         </Grid>
