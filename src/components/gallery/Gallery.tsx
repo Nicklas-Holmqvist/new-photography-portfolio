@@ -39,6 +39,13 @@ export const Gallery = () => {
     link: {
       cursor: 'pointer',
     },
+    image: {
+      cursor: 'pointer',
+      background: 'rgba(0, 0, 0, 0.8)',
+      '&:hover': {
+        backgroundColor: 'rgba(244, 244, 244, 0.8)',
+      },
+    },
   };
 
   useEffect(() => {
@@ -120,13 +127,15 @@ export const Gallery = () => {
           sx={{ py: 6 }}
         >
           <Typography variant="h3">{item.title}</Typography>
-          <Typography key={item.gallery}>{item.information}</Typography>
+          <Typography sx={{ width: '84ch', pt: 2 }} key={item.gallery}>
+            {item.information}
+          </Typography>
         </Grid>
       ))}
       <ImageList variant="masonry" cols={3} gap={4}>
         {showGallery.map((item) => (
           <>
-            <ImageListItem key={Number(item.id)}>
+            <ImageListItem key={Number(item.id)} style={style.image}>
               <img
                 src={`${item.imagePath}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}

@@ -8,9 +8,10 @@ export const Header = () => {
   const style = {
     container: {
       top: 0,
-      backgroundColor: 'rgba(244, 243, 238, 0.8)',
+      backgroundColor: 'rgba(244, 244, 244, 0.8)',
       zIndex: 100,
-      borderBottom: '1px solid grey',
+      // borderBottom: '1px solid grey',
+      boxShadow: '0 1px 3px 0 grey',
     },
     header: {
       padding: '10px 0',

@@ -1,11 +1,10 @@
 import React from 'react';
-import { IGallery } from '../gallery';
+import { Grid } from '@mui/material';
+
 import Modal from '@mui/material/Modal';
-import { Grid, IconButton } from '@mui/material';
 import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosNewIcon from '@mui/icons-material/ArrowForwardIos';
+import { IGallery } from '../gallery';
 
 export const ImageModal = (props: {
   image: any;
@@ -25,7 +24,8 @@ export const ImageModal = (props: {
       transform: 'translate(-50%, -50%)',
     },
     image: {
-      width: '100%',
+      height: 800,
+      width: 'auto',
     },
   };
   return (
