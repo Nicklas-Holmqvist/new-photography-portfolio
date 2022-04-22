@@ -1,41 +1,25 @@
 import { Grid } from '@mui/material';
 import React from 'react';
+import { galleryInformation } from './gallery/galleryInformation';
 import { Category } from './index';
 
 export const LandingPage = () => {
   const style = {
-    container: { width: '100%' },
+    container: { width: '100%', margin: 'auto' },
     hero: {
       height: '100vh',
       backgroundImage: 'url("/assets/hero.png")',
       backgroundPosition: 'center',
       backgroundRepeat: 'none',
       backgroundSize: 'cover',
+      marginBottom: 96,
     },
   };
-  const categories = [
-    {
-      title: 'Landskap',
-      information: 'Information',
-      imagePath: '/assets/trees.jpg',
-      imageAlt: 'imageAlt',
-      reverse: false,
-      anchor: 'landscape',
-    },
-    {
-      title: 'Gamla byggnader',
-      information: 'Information',
-      imagePath: '/assets/fonster.png',
-      imageAlt: 'imageAlt',
-      reverse: true,
-      anchor: 'oldBuildings',
-    },
-  ];
 
   return (
     <Grid style={style.container}>
       <Grid item style={style.hero}></Grid>
-      {categories.map((category) => (
+      {galleryInformation.map((category) => (
         <div className="category-section" key={category.title}>
           <Category
             title={category.title}
@@ -44,6 +28,7 @@ export const LandingPage = () => {
             imageAlt={category.imagePath}
             position={category.reverse}
             anchor={category.anchor}
+            showBtn={category.showBtn}
           />
         </div>
       ))}

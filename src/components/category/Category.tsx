@@ -9,30 +9,30 @@ interface ICategory {
   imageAlt: string;
   position: boolean;
   anchor: string;
+  showBtn: boolean;
 }
 
 export const Category = (props: ICategory) => {
   const navigate = useNavigate();
   const style = {
     container: {
-      maxWidth: 1200,
+      maxWidth: 1400,
       width: '100%',
-      padding: '40px 0',
+      // padding: '40px 0',
       margin: 'auto',
     },
     categoryInformation: {
-      maxWidth: 500,
-      width: '100%',
+      width: '50%',
       paddingLeft: 40,
     },
     title: {
       paddingBottom: '1rem',
     },
     image: {
-      maxWidth: 700,
       width: '100%',
     },
   };
+
   return (
     <Grid
       container
@@ -48,30 +48,43 @@ export const Category = (props: ICategory) => {
         flexDirection="column"
         justifyContent="center"
         style={style.categoryInformation}
+        md={6}
+        sx={{ height: 500 }}
       >
-        <Grid item>
+        <Grid
+          item
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Typography style={style.title} variant="h2">
             {props.title}
           </Typography>
-          <Typography>{props.information}</Typography>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              navigate(`/gallery/${props.anchor}`);
-            }}
-          >
-            Visa galleri
-          </Button>
+          <Typography sx={{ maxWidth: '64ch' }}>{props.information}</Typography>
+          {props.showBtn && (
+            <Button
+              variant="outlined"
+              onClick={() => {
+                navigate(`/gallery/${props.anchor}`);
+              }}
+            >
+              Visa galleri
+            </Button>
+          )}
         </Grid>
       </Grid>
-      <Grid item className="categoryImage">
-        <img
-          src={props.imagePath}
-          alt={props.imageAlt}
-          style={style.image}
-          loading="lazy"
-        />
-      </Grid>
+      <Grid
+        item
+        className="categoryImage"
+        md={6}
+        style={style.image}
+        sx={{
+          height: 500,
+          backgroundImage: `url(${props.imagePath})`,
+          backgroundPosition: 'center',
+        }}
+      ></Grid>
     </Grid>
   );
 };

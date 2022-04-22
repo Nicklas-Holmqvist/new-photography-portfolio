@@ -11,11 +11,11 @@ export const Header = () => {
       backgroundColor: 'rgba(244, 244, 244, 0.8)',
       zIndex: 100,
       // borderBottom: '1px solid grey',
-      boxShadow: '0 1px 3px 0 grey',
+      // boxShadow: '0 1px 3px 0 grey',
     },
     header: {
       padding: '10px 0',
-      maxWidth: 1000,
+      maxWidth: 1200,
       width: '100%',
       margin: 'auto',
     },

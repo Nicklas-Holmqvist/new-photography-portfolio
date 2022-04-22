@@ -17,6 +17,11 @@ export interface IGalleryInformation {
   gallery: string;
   title: string;
   information: string;
+  imagePath: string;
+  imageAlt: string;
+  reverse: boolean;
+  anchor: string;
+  showBtn: boolean;
 }
 
 export const Gallery = () => {
@@ -127,9 +132,9 @@ export const Gallery = () => {
           sx={{ py: 6 }}
         >
           <Typography variant="h3">{item.title}</Typography>
-          <Typography sx={{ width: '84ch', pt: 2 }} key={item.gallery}>
+          {/* <Typography sx={{ width: '84ch', pt: 2 }} key={item.gallery}>
             {item.information}
-          </Typography>
+          </Typography> */}
         </Grid>
       ))}
       <ImageList variant="masonry" cols={3} gap={4}>
