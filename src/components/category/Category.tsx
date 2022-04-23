@@ -23,7 +23,6 @@ export const Category = (props: ICategory) => {
     },
     categoryInformation: {
       width: '50%',
-      paddingLeft: 40,
     },
     title: {
       paddingBottom: '1rem',

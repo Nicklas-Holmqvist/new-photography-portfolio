@@ -1,9 +1,24 @@
-import { Grid } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import React from 'react';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export const Footer = () => {
   const style = {
-    padding: '20px 0',
+    container: {
+      maxWidth: 1400,
+      width: '100%',
+      margin: 'auto',
+      padding: '48px 0',
+    },
+    icons: {
+      margin: '0 16px',
+      textDecoration: 'none',
+      color: 'black',
+    },
   };
   return (
     <Grid
@@ -11,9 +26,67 @@ export const Footer = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      style={style}
+      style={style.container}
     >
-      Footer
+      <Grid item md={6}></Grid>
+      <Grid
+        item
+        md={6}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <a
+          href="https://www.instagram.com/nicklas.holmqvist"
+          target="_blank"
+          rel="noreferrer"
+          style={style.icons}
+        >
+          <IconButton>
+            <InstagramIcon />
+          </IconButton>
+        </a>
+        <a
+          href="https://github.com/Nicklas-Holmqvist"
+          target="_blank"
+          rel="noreferrer"
+          style={style.icons}
+        >
+          <IconButton>
+            <GitHubIcon />
+          </IconButton>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/nicklas-holmqvist-b96b901a8/"
+          target="_blank"
+          rel="noreferrer"
+          style={style.icons}
+        >
+          <IconButton>
+            <LinkedInIcon />
+          </IconButton>
+        </a>
+        <a
+          href="mailto:nicklas_holmqvist@outlook.com"
+          target="_blank"
+          rel="noreferrer"
+          style={style.icons}
+        >
+          <IconButton>
+            <MailOutlineIcon />
+          </IconButton>
+        </a>
+        <a
+          href="https://www.facebook.com/glomd.varld.marks.harad"
+          target="_blank"
+          rel="noreferrer"
+          style={style.icons}
+        >
+          <IconButton>
+            <FacebookIcon />
+          </IconButton>
+        </a>
+      </Grid>
     </Grid>
   );
 };

@@ -27,7 +27,7 @@ export const galleryInformation: IGalleryInformation[] = [
     gallery: 'about',
     title: 'Om mig',
     information:
-      'Jag heter Nicklas Holmqvist och bor i Varberg sedan sommaren 2022. Innan det växte jag upp i Marks kommun och dess mindre orter. Fotografering har varit ett stort intresse sedan mitten 2000 då jag köpte min första systemkamera 2006. Jag tillbringar gärna tid ute i skogarna där man kan finna de gamla, glömda historierna som landskapet kan förtälja. Sedan 2018 har jag haft ett projekt där jag går runt i markerna i Marks härad och dukumenterar det glömda, och vad man kan hitta. I mina två gallerier kan ni skåda de senaste verken och på glömdvärld.se kan ni följa min blogg eller på glömdvärld i marks härad på Facebook.',
+      'Jag heter Nicklas Holmqvist och bor i Varberg sedan sommaren 2022 och nyexaminerad Frontendutvecklare. Innan det växte jag upp i Marks kommun och dess mindre orter. Fotografering har varit ett stort intresse sedan mitten 2000 då jag köpte min första systemkamera 2006. Jag tillbringar gärna tid ute i skogarna där man kan finna de gamla, glömda historierna som landskapet kan förtälja. Sedan 2018 har jag haft ett projekt där jag går runt i markerna i Marks härad och dukumenterar det glömda, och vad man kan hitta. I mina två gallerier kan ni skåda de senaste verken och på glömdvärld.se kan ni följa min blogg eller på glömdvärld i marks härad på Facebook.',
     imagePath: '/assets/img/nicklas-holmqvist.jpg',
     imageAlt: 'Nicklas Holmqvist',
     reverse: true,
