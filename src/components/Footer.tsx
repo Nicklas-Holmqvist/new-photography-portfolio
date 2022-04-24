@@ -17,7 +17,6 @@ export const Footer = () => {
     icons: {
       margin: '0 16px',
       textDecoration: 'none',
-      color: 'black',
     },
   };
   return (
@@ -43,7 +42,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <InstagramIcon />
+            <InstagramIcon sx={{ color: 'grey' }} />
           </IconButton>
         </a>
         <a
@@ -53,7 +52,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <GitHubIcon />
+            <GitHubIcon sx={{ color: 'grey' }} />
           </IconButton>
         </a>
         <a
@@ -63,7 +62,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <LinkedInIcon />
+            <LinkedInIcon sx={{ color: 'grey' }} />
           </IconButton>
         </a>
         <a
@@ -73,7 +72,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <MailOutlineIcon />
+            <MailOutlineIcon sx={{ color: 'grey' }} />
           </IconButton>
         </a>
         <a
@@ -83,7 +82,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <FacebookIcon />
+            <FacebookIcon sx={{ color: 'grey' }} />
           </IconButton>
         </a>
       </Grid>

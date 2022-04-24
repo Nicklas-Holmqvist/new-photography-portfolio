@@ -26,9 +26,21 @@ export const Category = (props: ICategory) => {
     },
     title: {
       paddingBottom: '1rem',
+      color: 'grey',
+    },
+    information: {
+      color: 'grey',
+      paddingBottom: 16,
     },
     image: {
       width: '100%',
+    },
+    button: {
+      borderColor: 'lightgrey',
+      color: 'grey',
+      '&:hover': {
+        backgroundColor: 'white',
+      },
     },
   };
 
@@ -55,18 +67,24 @@ export const Category = (props: ICategory) => {
           display="flex"
           flexDirection="column"
           justifyContent="center"
-          alignItems="center"
+          alignItems="flex-start"
+          sx={{ margin: 'auto' }}
         >
           <Typography style={style.title} variant="h2">
             {props.title}
           </Typography>
-          <Typography sx={{ maxWidth: '64ch' }}>{props.information}</Typography>
+          <Typography style={style.information} sx={{ maxWidth: '64ch' }}>
+            {props.information}
+          </Typography>
           {props.showBtn && (
             <Button
               variant="outlined"
               onClick={() => {
                 navigate(`/gallery/${props.anchor}`);
               }}
+              size="large"
+              style={style.button}
+              sx={{ borderColor: 'grey' }}
             >
               Visa galleri
             </Button>

@@ -36,7 +36,7 @@ export const Gallery = () => {
 
   const style = {
     container: {
-      maxWidth: 1200,
+      maxWidth: 1400,
       width: '100%',
       paddingTop: '6rem',
       margin: 'auto',
@@ -129,9 +129,11 @@ export const Gallery = () => {
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          sx={{ py: 6 }}
+          sx={{ py: 2 }}
         >
-          <Typography variant="h3">{item.title}</Typography>
+          <Typography sx={{}} variant="h4">
+            {item.title}
+          </Typography>
           {/* <Typography sx={{ width: '84ch', pt: 2 }} key={item.gallery}>
             {item.information}
           </Typography> */}
