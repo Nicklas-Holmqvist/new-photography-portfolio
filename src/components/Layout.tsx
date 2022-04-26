@@ -1,8 +1,12 @@
 import { Grid } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Gallery } from './gallery';
 import { LandingPage, Footer, Header } from './index';
+import { theme } from '../theme';
+import '@fontsource/inter';
+import '@fontsource/alike';
 
 const Layout = () => {
   const style = {
@@ -17,14 +21,16 @@ const Layout = () => {
       style={style}
       position="relative"
     >
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/gallery/:id" element={<Gallery />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/gallery/:id" element={<Gallery />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
     </Grid>
   );
 };

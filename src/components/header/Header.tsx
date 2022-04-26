@@ -8,7 +8,7 @@ export const Header = () => {
   const style = {
     container: {
       top: 0,
-      backgroundColor: 'rgba(244, 244, 244, 0.8)',
+      backgroundColor: '#f4f3ee',
       zIndex: 100,
       // borderBottom: '1px solid grey',
       // boxShadow: '0 1px 3px 0 grey',

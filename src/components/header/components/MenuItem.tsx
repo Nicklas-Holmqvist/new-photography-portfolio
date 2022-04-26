@@ -6,7 +6,7 @@ export const MenuListItem = (props: { path: string; title: string }) => {
   const path: string = `/gallery/${props.path}`;
   const style = {
     textDecoration: 'none',
-    color: '#1A1D1A',
+    color: '#0A0908',
   };
   return (
     <Grid>

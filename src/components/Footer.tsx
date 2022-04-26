@@ -1,4 +1,4 @@
-import { Grid, IconButton } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -27,7 +27,17 @@ export const Footer = () => {
       alignItems="center"
       style={style.container}
     >
-      <Grid item md={6}></Grid>
+      <Grid
+        item
+        md={6}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography>
+          Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
+        </Typography>
+      </Grid>
       <Grid
         item
         md={6}
@@ -42,7 +52,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <InstagramIcon sx={{ color: 'grey' }} />
+            <InstagramIcon color="primary" />
           </IconButton>
         </a>
         <a
@@ -52,7 +62,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <GitHubIcon sx={{ color: 'grey' }} />
+            <GitHubIcon color="primary" />
           </IconButton>
         </a>
         <a
@@ -62,7 +72,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <LinkedInIcon sx={{ color: 'grey' }} />
+            <LinkedInIcon color="primary" />
           </IconButton>
         </a>
         <a
@@ -72,7 +82,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <MailOutlineIcon sx={{ color: 'grey' }} />
+            <MailOutlineIcon color="primary" />
           </IconButton>
         </a>
         <a
@@ -82,7 +92,7 @@ export const Footer = () => {
           style={style.icons}
         >
           <IconButton>
-            <FacebookIcon sx={{ color: 'grey' }} />
+            <FacebookIcon color="primary" />
           </IconButton>
         </a>
       </Grid>

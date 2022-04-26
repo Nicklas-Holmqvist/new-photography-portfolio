@@ -18,7 +18,6 @@ export const Category = (props: ICategory) => {
     container: {
       maxWidth: 1400,
       width: '100%',
-      // padding: '40px 0',
       margin: 'auto',
     },
     categoryInformation: {
@@ -26,21 +25,12 @@ export const Category = (props: ICategory) => {
     },
     title: {
       paddingBottom: '1rem',
-      color: 'grey',
     },
     information: {
-      color: 'grey',
       paddingBottom: 16,
     },
     image: {
       width: '100%',
-    },
-    button: {
-      borderColor: 'lightgrey',
-      color: 'grey',
-      '&:hover': {
-        backgroundColor: 'white',
-      },
     },
   };
 
@@ -83,7 +73,6 @@ export const Category = (props: ICategory) => {
                 navigate(`/gallery/${props.anchor}`);
               }}
               size="large"
-              style={style.button}
               sx={{ borderColor: 'grey' }}
             >
               Visa galleri
