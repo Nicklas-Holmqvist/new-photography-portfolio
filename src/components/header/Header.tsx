@@ -1,17 +1,16 @@
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { MenuListItem } from './components';
 import Logo from '../utils/icons/logo-daymode.png';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {
+  const [activeLink, setActiveLink] = useState<string>('');
   const style = {
     container: {
       top: 0,
       backgroundColor: '#f4f3ee',
       zIndex: 100,
-      // borderBottom: '1px solid grey',
-      // boxShadow: '0 1px 3px 0 grey',
     },
     header: {
       padding: '10px 0',
@@ -29,6 +28,9 @@ export const Header = () => {
       width: 300,
     },
   };
+
+  const activePage = (page: string) => setActiveLink(page);
+
   return (
     <Grid container style={style.container} position="fixed">
       <Grid
@@ -44,8 +46,18 @@ export const Header = () => {
         </Link>
 
         <ul style={style.list}>
-          <MenuListItem path="landscape" title="Landskap" />
-          <MenuListItem path="oldBuildings" title="Gamla byggnader" />
+          <MenuListItem
+            active={activeLink}
+            activePage={activePage}
+            path="landscape"
+            title="Landskap"
+          />
+          <MenuListItem
+            active={activeLink}
+            activePage={activePage}
+            path="oldBuildings"
+            title="Gamla byggnader"
+          />
         </ul>
       </Grid>
     </Grid>

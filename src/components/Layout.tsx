@@ -7,6 +7,7 @@ import { LandingPage, Footer, Header } from './index';
 import { theme } from '../theme';
 import '@fontsource/inter';
 import '@fontsource/alike';
+import { HeaderProvider } from '../context/header';
 
 const Layout = () => {
   const style = {
@@ -22,14 +23,16 @@ const Layout = () => {
       position="relative"
     >
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/gallery/:id" element={<Gallery />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
+        <HeaderProvider>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/gallery/:id" element={<Gallery />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </HeaderProvider>
       </ThemeProvider>
     </Grid>
   );

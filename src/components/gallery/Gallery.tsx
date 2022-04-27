@@ -1,11 +1,14 @@
 import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ImageModal } from '../imageModal';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useLocation } from 'react-router-dom';
+
+import { ImageModal } from '../imageModal';
 import { gallery } from './images';
 import { galleryInformation } from './galleryInformation';
+import { useHeaderContext } from '../../context/header';
 
 export interface IGallery {
   id: number;
@@ -25,6 +28,9 @@ export interface IGalleryInformation {
 }
 
 export const Gallery = () => {
+  const context = useHeaderContext();
+  const location = useLocation();
+  console.log(location.pathname);
   const params = useParams();
   const [updateGallery, setUpdateGallery] = useState('');
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
@@ -57,6 +63,7 @@ export const Gallery = () => {
     if (params.id === updateGallery) return;
     setShowGallery([]);
     setUpdateGallery(params.id!);
+    context.handleActiveLink(params.id);
   }, [params]);
 
   useEffect(() => {
@@ -122,23 +129,7 @@ export const Gallery = () => {
         <ArrowBackIosNewIcon sx={{ pr: 1, fontSize: 16 }} />
         <Typography>Gå tillbaka</Typography>
       </Grid>
-      {information.map((item) => (
-        <Grid
-          item
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          flexDirection="column"
-          sx={{ py: 2 }}
-        >
-          <Typography sx={{}} variant="h4">
-            {item.title}
-          </Typography>
-          {/* <Typography sx={{ width: '84ch', pt: 2 }} key={item.gallery}>
-            {item.information}
-          </Typography> */}
-        </Grid>
-      ))}
+
       <ImageList variant="masonry" cols={3} gap={4}>
         {showGallery.map((item) => (
           <>

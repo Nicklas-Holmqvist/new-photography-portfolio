@@ -1,24 +1,21 @@
 import { Grid } from '@mui/material';
-import React from 'react';
-import { galleryInformation } from './gallery/galleryInformation';
+import React, { useEffect } from 'react';
+
 import { Category } from './index';
+import { useHeaderContext } from '../context/header';
+import { galleryInformation } from './gallery/galleryInformation';
 
 export const LandingPage = () => {
+  const context = useHeaderContext();
   const style = {
-    container: { width: '100%', margin: 'auto' },
-    hero: {
-      height: '100vh',
-      backgroundImage: 'url("/assets/hero.png")',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'none',
-      backgroundSize: 'cover',
-      marginBottom: 96,
-    },
+    container: { width: '100%', margin: 'auto', marginTop: '6rem' },
   };
+  useEffect(() => {
+    context.handleActiveLink('');
+  }, []);
 
   return (
     <Grid style={style.container}>
-      <Grid item style={style.hero}></Grid>
       {galleryInformation.map((category) => (
         <div className="category-section" key={category.title}>
           <Category
