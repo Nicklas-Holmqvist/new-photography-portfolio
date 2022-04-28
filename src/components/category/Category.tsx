@@ -1,4 +1,5 @@
 import { Button, Grid, Typography } from '@mui/material';
+import { motion } from 'framer-motion';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ export const Category = (props: ICategory) => {
       margin: 'auto',
     },
     categoryInformation: {
-      width: '50%',
+      width: '90%',
     },
     title: {
       paddingBottom: '1rem',
@@ -31,6 +32,9 @@ export const Category = (props: ICategory) => {
     },
     image: {
       width: '100%',
+      height: 500,
+      backgroundImage: `url(${props.imagePath})`,
+      backgroundPosition: 'center',
     },
   };
 
@@ -43,54 +47,57 @@ export const Category = (props: ICategory) => {
       id={props.anchor}
       style={style.container}
     >
-      <Grid
-        item
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        style={style.categoryInformation}
-        md={6}
-        sx={{ height: 500 }}
+      <motion.div
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.2, delay: 0.2 }}
       >
         <Grid
           item
           display="flex"
           flexDirection="column"
           justifyContent="center"
-          alignItems="flex-start"
-          sx={{ margin: 'auto' }}
+          style={style.categoryInformation}
+          md={12}
+          sx={{ height: 500 }}
         >
-          <Typography style={style.title} variant="h2">
-            {props.title}
-          </Typography>
-          <Typography style={style.information} sx={{ maxWidth: '64ch' }}>
-            {props.information}
-          </Typography>
-          {props.showBtn && (
-            <Button
-              variant="outlined"
-              onClick={() => {
-                navigate(`/gallery/${props.anchor}`);
-              }}
-              size="large"
-              sx={{ borderColor: 'grey' }}
-            >
-              Visa galleri
-            </Button>
-          )}
+          <Grid
+            item
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="flex-start"
+            sx={{ margin: 'auto' }}
+          >
+            <Typography style={style.title} variant="h2">
+              {props.title}
+            </Typography>
+            <Typography style={style.information} sx={{ maxWidth: '64ch' }}>
+              {props.information}
+            </Typography>
+            {props.showBtn && (
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  navigate(`/gallery/${props.anchor}`);
+                }}
+                size="large"
+                sx={{ borderColor: 'grey' }}
+              >
+                Visa galleri
+              </Button>
+            )}
+          </Grid>
         </Grid>
+      </motion.div>
+      <Grid item className="categoryImage" md={6}>
+        <motion.div
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.2, delay: 0.3 }}
+          style={style.image}
+        ></motion.div>
       </Grid>
-      <Grid
-        item
-        className="categoryImage"
-        md={6}
-        style={style.image}
-        sx={{
-          height: 500,
-          backgroundImage: `url(${props.imagePath})`,
-          backgroundPosition: 'center',
-        }}
-      ></Grid>
     </Grid>
   );
 };

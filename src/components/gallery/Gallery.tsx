@@ -9,6 +9,7 @@ import { ImageModal } from '../imageModal';
 import { gallery } from './images';
 import { galleryInformation } from './galleryInformation';
 import { useHeaderContext } from '../../context/header';
+import { motion } from 'framer-motion';
 
 export interface IGallery {
   id: number;
@@ -52,7 +53,6 @@ export const Gallery = () => {
     },
     image: {
       cursor: 'pointer',
-      background: 'rgba(0, 0, 0, 0.8)',
       '&:hover': {
         backgroundColor: 'rgba(244, 244, 244, 0.8)',
       },
@@ -102,6 +102,11 @@ export const Gallery = () => {
     }
   };
 
+  const imageVariant = {
+    initial: { y: 10, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
   return (
     <Grid
       container
@@ -131,8 +136,13 @@ export const Gallery = () => {
       </Grid>
 
       <ImageList variant="masonry" cols={3} gap={4}>
-        {showGallery.map((item) => (
-          <>
+        {showGallery.map((item, i) => (
+          <motion.div
+            variants={imageVariant}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: i * 0.01 }}
+          >
             <ImageListItem key={Number(item.id)} style={style.image}>
               <img
                 src={`${item.imagePath}?w=248&fit=crop&auto=format`}
@@ -144,7 +154,7 @@ export const Gallery = () => {
                 onClick={openImageModal}
               />
             </ImageListItem>
-          </>
+          </motion.div>
         ))}
       </ImageList>
     </Grid>
