@@ -9,11 +9,11 @@ export const Header = () => {
   const style = {
     container: {
       top: 0,
-      backgroundColor: '#f4f3ee',
+      backgroundColor: 'rgba(244,243,238,0.9)',
       zIndex: 100,
     },
     header: {
-      padding: '10px 0',
+      padding: '1rem 0',
       maxWidth: 1200,
       width: '100%',
       margin: 'auto',

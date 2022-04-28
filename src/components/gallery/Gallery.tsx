@@ -7,7 +7,6 @@ import { useLocation } from 'react-router-dom';
 
 import { ImageModal } from '../imageModal';
 import { gallery } from './images';
-import { galleryInformation } from './galleryInformation';
 import { useHeaderContext } from '../../context/header';
 import { motion } from 'framer-motion';
 
@@ -35,7 +34,6 @@ export const Gallery = () => {
   const params = useParams();
   const [updateGallery, setUpdateGallery] = useState('');
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
-  const [information, setInformation] = useState<IGalleryInformation[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
 
@@ -64,12 +62,9 @@ export const Gallery = () => {
     setShowGallery([]);
     setUpdateGallery(params.id!);
     context.handleActiveLink(params.id);
-  }, [params]);
+  }, [context, params, updateGallery]);
 
   useEffect(() => {
-    setInformation(
-      galleryInformation.filter((item) => item.gallery === updateGallery)
-    );
     setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
   }, [updateGallery]);
 

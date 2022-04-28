@@ -9,21 +9,11 @@ import { motion } from 'framer-motion';
 export const LandingPage = () => {
   const context = useHeaderContext();
   const style = {
-    container: { width: '100%', margin: 'auto', marginTop: '6rem' },
+    container: { width: '100%', margin: 'auto', marginTop: '8rem' },
   };
   useEffect(() => {
     context.handleActiveLink('');
-  }, []);
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        delayChildren: 1.5,
-      },
-    },
-  };
+  }, [context]);
 
   const categoryVariants = {
     initial: { y: 0, opacity: 0 },

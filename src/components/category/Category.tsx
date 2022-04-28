@@ -47,19 +47,18 @@ export const Category = (props: ICategory) => {
       id={props.anchor}
       style={style.container}
     >
-      <motion.div
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.2, delay: 0.2 }}
+      <Grid
+        item
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        md={6}
+        sx={{ height: 500 }}
       >
-        <Grid
-          item
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          style={style.categoryInformation}
-          md={12}
-          sx={{ height: 500 }}
+        <motion.div
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
         >
           <Grid
             item
@@ -67,6 +66,7 @@ export const Category = (props: ICategory) => {
             flexDirection="column"
             justifyContent="center"
             alignItems="flex-start"
+            style={style.categoryInformation}
             sx={{ margin: 'auto' }}
           >
             <Typography style={style.title} variant="h2">
@@ -88,8 +88,8 @@ export const Category = (props: ICategory) => {
               </Button>
             )}
           </Grid>
-        </Grid>
-      </motion.div>
+        </motion.div>
+      </Grid>
       <Grid item className="categoryImage" md={6}>
         <motion.div
           initial={{ y: 10, opacity: 0 }}
