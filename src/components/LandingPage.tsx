@@ -8,9 +8,6 @@ import { motion } from 'framer-motion';
 
 export const LandingPage = () => {
   const context = useHeaderContext();
-  const style = {
-    container: { width: '100%', margin: 'auto', marginTop: '8rem' },
-  };
   useEffect(() => {
     context.handleActiveLink('');
   }, [context]);
@@ -21,7 +18,16 @@ export const LandingPage = () => {
   };
 
   return (
-    <Grid style={style.container}>
+    <Grid
+      sx={{
+        width: '100%',
+        margin: 'auto',
+        marginTop: {
+          xs: '6rem',
+          md: '8rem',
+        },
+      }}
+    >
       {galleryInformation.map((category, i) => (
         <motion.div
           variants={categoryVariants}

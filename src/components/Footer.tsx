@@ -6,13 +6,13 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-export const Footer = () => {
+export const Footer = (props: { reverse?: boolean }) => {
   const style = {
     container: {
       maxWidth: 1400,
       width: '100%',
-      margin: 'auto',
-      padding: '48px 0',
+      margin: '0 auto',
+      padding: '24px 0',
     },
     icons: {
       margin: '0 16px',
@@ -23,6 +23,7 @@ export const Footer = () => {
     <Grid
       container
       display="flex"
+      flexDirection={props.reverse ? 'column-reverse' : 'column'}
       justifyContent="center"
       alignItems="center"
       style={style.container}
@@ -44,6 +45,7 @@ export const Footer = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        sx={{ pb: 1 }}
       >
         <a
           href="https://www.instagram.com/nicklas.holmqvist"

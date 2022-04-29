@@ -120,13 +120,18 @@ export const Gallery = () => {
       )}
       <Grid
         item
-        display="flex"
         flexDirection="row"
         alignItems="center"
         style={style.link}
+        sx={{
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
+        }}
         onClick={() => navigate('/')}
       >
-        <ArrowBackIosNewIcon sx={{ pr: 1, fontSize: 16 }} />
+        <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
         <Typography>Gå tillbaka</Typography>
       </Grid>
 

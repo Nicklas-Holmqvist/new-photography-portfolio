@@ -52,6 +52,7 @@ export const Category = (props: ICategory) => {
         display="flex"
         flexDirection="column"
         justifyContent="center"
+        xs={12}
         md={6}
         sx={{ height: 500 }}
       >
@@ -90,7 +91,7 @@ export const Category = (props: ICategory) => {
           </Grid>
         </motion.div>
       </Grid>
-      <Grid item className="categoryImage" md={6}>
+      <Grid item className="categoryImage" xs={12} md={6}>
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
