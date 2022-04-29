@@ -18,17 +18,25 @@ export const ImageModal = (props: {
     modalContainer: {},
     imageContainer: {
       maxWidth: 1200,
-      width: '70%',
+      width: '100%',
       margin: 'auto',
+      padding: '0 1rem',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
     },
     image: {
-      height: 800,
-      width: 'auto',
+      maxWidth: 1200,
+      width: '100%',
+      height: '80vh',
+      backgroundImage: `url(${props.image.imagePath})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',
     },
   };
+
+  console.log({ IMAGE: props.image });
 
   return (
     <Grid container position="relative" style={style.modalContainer}>
@@ -56,14 +64,11 @@ export const ImageModal = (props: {
             onClick={(e) => props.handleModalCarousele(e)}
             style={{ color: 'white', paddingRight: '2rem', cursor: 'pointer' }}
           />
-          <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }}>
-            <img
-              src={props.image.imagePath}
-              alt={props.image.imageAlt}
-              loading="lazy"
-              style={style.image}
-            />
-          </motion.div>
+          <motion.div
+            style={style.image}
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+          ></motion.div>
           <img
             id={props.image.id}
             src={ForwardIcon}

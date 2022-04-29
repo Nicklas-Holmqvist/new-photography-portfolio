@@ -33,7 +33,7 @@ export const Category = (props: ICategory) => {
     image: {
       width: '100%',
       height: 500,
-      backgroundImage: `url(${props.imagePath})`,
+      backgroundImage: `url(${props.imageAlt})`,
       backgroundPosition: 'center',
     },
   };

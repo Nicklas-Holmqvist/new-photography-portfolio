@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { ImageModal } from '../imageModal';
 import { gallery } from './images';
@@ -33,6 +34,8 @@ export const Gallery = () => {
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
+
+  const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
   const navigate = useNavigate();
 
@@ -69,7 +72,7 @@ export const Gallery = () => {
     const target = e.target;
     const image: IGallery = {
       id: target.id,
-      imagePath: target.srcset.split('?')[0],
+      imagePath: target.src,
       imageAlt: target.alt,
       gallery: target.title,
     };
@@ -127,7 +130,7 @@ export const Gallery = () => {
         <Typography>Gå tillbaka</Typography>
       </Grid>
 
-      <ImageList variant="masonry" cols={3} gap={4}>
+      <ImageList variant="masonry" cols={mediaQueryMobile ? 3 : 1} gap={4}>
         {showGallery.map((item, i) => (
           <motion.div
             variants={imageVariant}
