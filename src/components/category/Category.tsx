@@ -35,6 +35,8 @@ export const Category = (props: ICategory) => {
       height: 500,
       backgroundImage: `url(${props.imageAlt})`,
       backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
     },
   };
 
