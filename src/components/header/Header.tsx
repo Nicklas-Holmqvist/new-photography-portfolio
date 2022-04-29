@@ -12,7 +12,7 @@ export const Header = () => {
   const style = {
     container: {
       top: 0,
-      backgroundColor: 'rgba(244,243,238,0.9)',
+      backgroundColor: 'rgba(243, 243, 243,0.9)',
       zIndex: 100,
     },
     header: {
