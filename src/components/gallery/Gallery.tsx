@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { useLocation } from 'react-router-dom';
 
 import { ImageModal } from '../imageModal';
 import { gallery } from './images';
@@ -29,8 +28,6 @@ export interface IGalleryInformation {
 
 export const Gallery = () => {
   const context = useHeaderContext();
-  const location = useLocation();
-  console.log(location.pathname);
   const params = useParams();
   const [updateGallery, setUpdateGallery] = useState('');
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
