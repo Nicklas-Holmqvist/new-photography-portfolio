@@ -68,6 +68,7 @@ export const ImageModal = (props: {
             id={props.image.id}
             src={ForwardIcon}
             alt="forward"
+            loading="lazy"
             onClick={(e) => props.handleModalCarousele(e)}
             style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
           />

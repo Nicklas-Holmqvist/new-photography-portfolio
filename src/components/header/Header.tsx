@@ -1,9 +1,11 @@
 import { Grid } from '@mui/material';
 import React, { useState } from 'react';
-import { MenuListItem } from './components';
-import Logo from '../utils/icons/logo-daymode.png';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
+import { MenuListItem } from './components';
+import Logo from '../utils/icons/logo-daymode.png';
+import { MobileMenu } from './components/MobileMenu';
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
@@ -14,14 +16,14 @@ export const Header = () => {
       zIndex: 100,
     },
     header: {
-      padding: '1rem 0',
-      maxWidth: 1200,
+      padding: '0.5rem 2rem',
+      maxWidth: 1300,
       width: '100%',
       margin: 'auto',
     },
     logo: {
-      height: '10%',
-      width: '10%',
+      height: 56,
+      // width: '100%',
     },
     list: {
       display: 'flex',
@@ -36,11 +38,52 @@ export const Header = () => {
     <Grid container style={style.container} position="fixed">
       <Grid
         item
+        flexDirection="row"
+        justifyContent="space-between"
+        sx={{
+          width: '100%',
+          display: {
+            xs: 'flex',
+            md: 'none',
+          },
+          padding: '0.5rem 0',
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={{
+            width: '33%',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <MobileMenu />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          style={{ width: '33%', display: 'flex', justifyContent: 'center' }}
+        >
+          <Link to="/">
+            <img src={Logo} alt="logo" style={style.logo} />
+          </Link>
+        </motion.div>
+        <Grid item style={{ width: '33%' }}></Grid>
+      </Grid>
+      <Grid
+        item
         display="flex"
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
         style={style.header}
+        sx={{
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
+        }}
       >
         <motion.div
           initial={{ y: -5, opacity: 0 }}
