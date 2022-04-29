@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { MenuListItem } from './components';
 import Logo from '../utils/icons/logo-daymode.png';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
@@ -41,23 +42,40 @@ export const Header = () => {
         alignItems="center"
         style={style.header}
       >
-        <Link to="/">
-          <img src={Logo} alt="logo" style={style.logo} />
-        </Link>
+        <motion.div
+          initial={{ y: -5, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+        >
+          <Link to="/">
+            <img src={Logo} alt="logo" style={style.logo} />
+          </Link>
+        </motion.div>
 
         <ul style={style.list}>
-          <MenuListItem
-            active={activeLink}
-            activePage={activePage}
-            path="landscape"
-            title="Landskap"
-          />
-          <MenuListItem
-            active={activeLink}
-            activePage={activePage}
-            path="oldBuildings"
-            title="Gamla byggnader"
-          />
+          <motion.div
+            initial={{ y: -5, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+          >
+            <MenuListItem
+              active={activeLink}
+              activePage={activePage}
+              path="landscape"
+              title="Landskap"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ y: -5, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <MenuListItem
+              active={activeLink}
+              activePage={activePage}
+              path="oldBuildings"
+              title="Gamla byggnader"
+            />
+          </motion.div>
         </ul>
       </Grid>
     </Grid>

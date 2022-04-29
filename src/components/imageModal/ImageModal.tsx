@@ -29,6 +29,7 @@ export const ImageModal = (props: {
       width: 'auto',
     },
   };
+
   return (
     <Grid container position="relative" style={style.modalContainer}>
       <Modal
@@ -53,7 +54,7 @@ export const ImageModal = (props: {
             src={BackIcon}
             alt="back"
             onClick={(e) => props.handleModalCarousele(e)}
-            style={{ color: 'white', paddingRight: '1rem', cursor: 'pointer' }}
+            style={{ color: 'white', paddingRight: '2rem', cursor: 'pointer' }}
           />
           <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }}>
             <img
@@ -68,7 +69,7 @@ export const ImageModal = (props: {
             src={ForwardIcon}
             alt="forward"
             onClick={(e) => props.handleModalCarousele(e)}
-            style={{ color: 'white', paddingLeft: '1rem', cursor: 'pointer' }}
+            style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
           />
         </Grid>
       </Modal>
