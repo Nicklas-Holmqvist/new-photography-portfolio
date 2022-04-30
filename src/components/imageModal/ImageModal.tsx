@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 import Modal from '@mui/material/Modal';
 import BackIcon from '../utils/icons/backIcon.png';
@@ -57,26 +58,62 @@ export const ImageModal = (props: {
           style={style.imageContainer}
           position="absolute"
         >
-          <img
-            id={props.image.id}
-            src={BackIcon}
-            alt="back"
-            onClick={(e) => props.handleModalCarousele(e)}
-            style={{ color: 'white', paddingRight: '2rem', cursor: 'pointer' }}
-          />
+          <motion.div
+            style={{
+              cursor: 'pointer',
+              top: 0,
+              right: 8,
+              marginTop: -36,
+              position: 'absolute',
+            }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+          >
+            <CloseIcon
+              sx={{
+                color: 'white',
+
+                fontSize: 36,
+              }}
+              onClick={props.handleClose}
+            />
+          </motion.div>
+          <motion.div
+            style={{ cursor: 'pointer' }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+          >
+            <img
+              id={props.image.id}
+              src={BackIcon}
+              alt="back"
+              onClick={(e) => props.handleModalCarousele(e)}
+              style={{
+                color: 'white',
+                paddingRight: '2rem',
+                cursor: 'pointer',
+              }}
+            />
+          </motion.div>
           <motion.div
             style={style.image}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
           ></motion.div>
-          <img
-            id={props.image.id}
-            src={ForwardIcon}
-            alt="forward"
-            loading="lazy"
-            onClick={(e) => props.handleModalCarousele(e)}
-            style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
-          />
+          <motion.div
+            style={{ cursor: 'pointer' }}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+          >
+            <img
+              id={props.image.id}
+              src={ForwardIcon}
+              alt="forward"
+              loading="lazy"
+              onClick={(e) => props.handleModalCarousele(e)}
+              style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
+            />
+          </motion.div>
         </Grid>
       </Modal>
     </Grid>
