@@ -1,10 +1,4 @@
-import {
-  CircularProgress,
-  Grid,
-  ImageList,
-  ImageListItem,
-  Typography,
-} from '@mui/material';
+import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
