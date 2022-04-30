@@ -143,12 +143,12 @@ export const Gallery = () => {
               key={Number(item.id)}
               sx={{
                 cursor: mediaQueryMobile ? 'pointer' : 'default',
-                display: loaded ? 'inherit' : 'none',
               }}
             >
               <img
                 src={`${item.imagePath}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                style={loaded ? {} : { opacity: 0 }}
                 alt={item.imageAlt}
                 id={item.id.toString()}
                 loading="lazy"
