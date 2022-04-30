@@ -145,7 +145,6 @@ export const Gallery = () => {
             animate="animate"
             transition={{ delay: i * 0.01 }}
           >
-            {!loaded && <CircularProgress />}
             <ImageListItem
               key={Number(item.id)}
               sx={{
