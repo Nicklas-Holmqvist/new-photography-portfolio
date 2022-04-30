@@ -2,7 +2,6 @@ import { Drawer, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -10,10 +9,7 @@ import { Footer } from '../..';
 
 export const MobileMenu = () => {
   const navigateTo = useNavigate();
-  const maxWidth = useMediaQuery('(min-width:600px)');
   const [drawer, setDrawer] = useState(false);
-  const showMobileMenu = maxWidth ? 'none' : 'flex';
-  console.log(showMobileMenu);
 
   const toggleDrawer = (event: boolean) => {
     setDrawer(event);
@@ -21,7 +17,7 @@ export const MobileMenu = () => {
   return (
     <Grid sx={{ paddingLeft: '24px' }}>
       <MenuIcon
-        sx={{ fontSize: '2.5rem', cursor: 'pointer' }}
+        sx={{ fontSize: 48, cursor: 'pointer' }}
         onClick={() => toggleDrawer(true)}
       />
       <Drawer anchor="left" open={drawer} onClose={() => toggleDrawer(false)}>
@@ -31,8 +27,8 @@ export const MobileMenu = () => {
             top: 0,
             right: 0,
             position: 'fixed',
-            margin: '2rem 3rem 0 0',
-            fontSize: 36,
+            margin: '22px 26px 0 0',
+            fontSize: 48,
             cursor: 'pointer',
           }}
         />
@@ -119,7 +115,7 @@ export const MobileMenu = () => {
               </li>
             </motion.div>
           </ul>
-          <Footer reverse={true} />
+          <Footer />
         </Grid>
       </Drawer>
     </Grid>

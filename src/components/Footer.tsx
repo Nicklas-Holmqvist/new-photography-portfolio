@@ -5,14 +5,16 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-export const Footer = (props: { reverse?: boolean }) => {
+export const Footer = () => {
+  const mediaQueryMobile = useMediaQuery('(min-width:600px)');
   const style = {
     container: {
       maxWidth: 1400,
       width: '100%',
       margin: '0 auto',
-      padding: '24px 0',
+      padding: '16px 0',
     },
     icons: {
       margin: '0 16px',
@@ -23,7 +25,7 @@ export const Footer = (props: { reverse?: boolean }) => {
     <Grid
       container
       display="flex"
-      flexDirection={props.reverse ? 'column-reverse' : 'column'}
+      flexDirection={!mediaQueryMobile ? 'column-reverse' : 'column'}
       justifyContent="center"
       alignItems="center"
       style={style.container}
@@ -35,7 +37,21 @@ export const Footer = (props: { reverse?: boolean }) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              xs: 12,
+              md: 16,
+            },
+            mb: {
+              xs: 2,
+              md: 0,
+            },
+            px: {
+              xs: 2,
+            },
+          }}
+        >
           Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
         </Typography>
       </Grid>
@@ -51,9 +67,15 @@ export const Footer = (props: { reverse?: boolean }) => {
           href="https://www.instagram.com/nicklas.holmqvist"
           target="_blank"
           rel="noreferrer"
-          style={style.icons}
         >
-          <IconButton>
+          <IconButton
+            sx={{
+              m: {
+                xs: 1,
+                md: 3,
+              },
+            }}
+          >
             <InstagramIcon color="primary" />
           </IconButton>
         </a>
@@ -61,9 +83,15 @@ export const Footer = (props: { reverse?: boolean }) => {
           href="https://github.com/Nicklas-Holmqvist"
           target="_blank"
           rel="noreferrer"
-          style={style.icons}
         >
-          <IconButton>
+          <IconButton
+            sx={{
+              m: {
+                xs: 1,
+                md: 3,
+              },
+            }}
+          >
             <GitHubIcon color="primary" />
           </IconButton>
         </a>
@@ -71,9 +99,15 @@ export const Footer = (props: { reverse?: boolean }) => {
           href="https://www.linkedin.com/in/nicklas-holmqvist-b96b901a8/"
           target="_blank"
           rel="noreferrer"
-          style={style.icons}
         >
-          <IconButton>
+          <IconButton
+            sx={{
+              m: {
+                xs: 1,
+                md: 3,
+              },
+            }}
+          >
             <LinkedInIcon color="primary" />
           </IconButton>
         </a>
@@ -81,9 +115,15 @@ export const Footer = (props: { reverse?: boolean }) => {
           href="mailto:nicklas_holmqvist@outlook.com"
           target="_blank"
           rel="noreferrer"
-          style={style.icons}
         >
-          <IconButton>
+          <IconButton
+            sx={{
+              m: {
+                xs: 1,
+                md: 3,
+              },
+            }}
+          >
             <MailOutlineIcon color="primary" />
           </IconButton>
         </a>
@@ -91,9 +131,15 @@ export const Footer = (props: { reverse?: boolean }) => {
           href="https://www.facebook.com/glomd.varld.marks.harad"
           target="_blank"
           rel="noreferrer"
-          style={style.icons}
         >
-          <IconButton>
+          <IconButton
+            sx={{
+              m: {
+                xs: 1,
+                md: 3,
+              },
+            }}
+          >
             <FacebookIcon color="primary" />
           </IconButton>
         </a>

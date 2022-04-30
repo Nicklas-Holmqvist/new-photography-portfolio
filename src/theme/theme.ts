@@ -1,7 +1,7 @@
 import { createTheme, Theme } from '@mui/material/styles';
 
 const FONT_PRIMARY = 'alike';
-const FONT_SECONDARY = 'Inter';
+const FONT_SECONDARY = 'Poppins';
 
 declare module '@mui/material/styles' {
   interface DefaultTheme extends Theme {}

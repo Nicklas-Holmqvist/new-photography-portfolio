@@ -7,6 +7,7 @@ import { LandingPage, Footer, Header } from './index';
 import { theme } from '../theme';
 import '@fontsource/inter';
 import '@fontsource/alike';
+import '@fontsource/poppins';
 import { HeaderProvider } from '../context/header';
 
 const Layout = () => {

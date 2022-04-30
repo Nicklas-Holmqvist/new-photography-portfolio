@@ -50,10 +50,7 @@ export const Gallery = () => {
       cursor: 'pointer',
     },
     image: {
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: 'rgba(244, 244, 244, 0.8)',
-      },
+      cursor: mediaQueryMobile ? 'pointer' : 'default',
     },
   };
 
@@ -69,6 +66,7 @@ export const Gallery = () => {
   }, [updateGallery]);
 
   const openImageModal = (e: any) => {
+    if (!mediaQueryMobile) return;
     const target = e.target;
     const image: IGallery = {
       id: target.id,

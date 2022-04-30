@@ -16,14 +16,13 @@ export const Header = () => {
       zIndex: 100,
     },
     header: {
-      padding: '0.5rem 2rem',
+      padding: '1rem 2rem',
       maxWidth: 1300,
       width: '100%',
       margin: 'auto',
     },
     logo: {
       height: 56,
-      // width: '100%',
     },
     list: {
       display: 'flex',
@@ -46,7 +45,7 @@ export const Header = () => {
             xs: 'flex',
             md: 'none',
           },
-          padding: '0.5rem 0',
+          padding: '2rem 0 1.2rem 0',
         }}
       >
         <motion.div
@@ -55,7 +54,8 @@ export const Header = () => {
           style={{
             width: '33%',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'start',
+            marginTop: '-12px',
           }}
         >
           <MobileMenu />
