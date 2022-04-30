@@ -54,8 +54,7 @@ export const Header = () => {
           style={{
             width: '33%',
             display: 'flex',
-            alignItems: 'start',
-            marginTop: '-12px',
+            alignItems: 'center',
           }}
         >
           <MobileMenu />
