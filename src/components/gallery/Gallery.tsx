@@ -1,4 +1,10 @@
-import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
+import {
+  CircularProgress,
+  Grid,
+  ImageList,
+  ImageListItem,
+  Typography,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -34,6 +40,7 @@ export const Gallery = () => {
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
@@ -48,9 +55,6 @@ export const Gallery = () => {
     },
     link: {
       cursor: 'pointer',
-    },
-    image: {
-      cursor: mediaQueryMobile ? 'pointer' : 'default',
     },
   };
 
@@ -141,7 +145,14 @@ export const Gallery = () => {
             animate="animate"
             transition={{ delay: i * 0.01 }}
           >
-            <ImageListItem key={Number(item.id)} style={style.image}>
+            {!loaded && <CircularProgress />}
+            <ImageListItem
+              key={Number(item.id)}
+              sx={{
+                cursor: mediaQueryMobile ? 'pointer' : 'default',
+                display: loaded ? 'inherit' : 'none',
+              }}
+            >
               <img
                 src={`${item.imagePath}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -150,6 +161,7 @@ export const Gallery = () => {
                 loading="lazy"
                 title={item.gallery}
                 onClick={openImageModal}
+                onLoad={() => setLoaded(true)}
               />
             </ImageListItem>
           </motion.div>
