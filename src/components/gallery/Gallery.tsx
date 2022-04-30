@@ -96,7 +96,7 @@ export const Gallery = () => {
   };
 
   const imageVariant = {
-    initial: { y: 10, opacity: 0 },
+    initial: { y: -10, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
 
