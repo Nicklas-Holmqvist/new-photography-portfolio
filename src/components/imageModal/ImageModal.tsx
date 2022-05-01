@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -7,6 +7,7 @@ import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
 import { IGallery } from '../gallery';
 import { motion } from 'framer-motion';
+import { LockRightClick } from '../helpers';
 
 export const ImageModal = (props: {
   image: any;
@@ -37,7 +38,26 @@ export const ImageModal = (props: {
     },
   };
 
-  console.log({ IMAGE: props.image });
+  const handleClose = () => {
+    setContextMenu(null);
+  };
+
+  const [contextMenu, setContextMenu] = useState<{
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX - 2,
+            mouseY: event.clientY - 4,
+          }
+        : null
+    );
+  };
 
   return (
     <Grid container position="relative" style={style.modalContainer}>
@@ -57,7 +77,9 @@ export const ImageModal = (props: {
           item
           style={style.imageContainer}
           position="absolute"
+          onContextMenu={handleContextMenu}
         >
+          <LockRightClick contextMenu={contextMenu} handleClose={handleClose} />
           <motion.div
             style={{
               cursor: 'pointer',

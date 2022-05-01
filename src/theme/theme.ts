@@ -143,6 +143,13 @@ export const theme = createTheme({
         colorPrimary: '#0A0908',
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'rgba(0, 0, 0, 0.2) 0px 0.5px 1px 0px',
+        },
+      },
+    },
   },
 });
 
