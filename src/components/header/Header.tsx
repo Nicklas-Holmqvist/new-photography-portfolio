@@ -31,10 +31,6 @@ export const Header = () => {
     },
   };
 
-  const toTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   const activePage = (page: string) => setActiveLink(page);
 
   return (
