@@ -31,6 +31,10 @@ export const Header = () => {
     },
   };
 
+  const toTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   const activePage = (page: string) => setActiveLink(page);
 
   return (
@@ -64,7 +68,7 @@ export const Header = () => {
           animate={{ opacity: 1 }}
           style={{ width: '33%', display: 'flex', justifyContent: 'center' }}
         >
-          <Link to="/">
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>
             <img src={Logo} alt="logo" style={style.logo} />
           </Link>
         </motion.div>
@@ -88,7 +92,7 @@ export const Header = () => {
           initial={{ y: -5, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <Link to="/">
+          <Link to="/" onClick={() => window.scrollTo(0, 0)}>
             <img src={Logo} alt="logo" style={style.logo} />
           </Link>
         </motion.div>
