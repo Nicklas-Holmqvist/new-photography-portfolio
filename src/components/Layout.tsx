@@ -9,6 +9,8 @@ import '@fontsource/inter';
 import '@fontsource/alike';
 import '@fontsource/poppins';
 import { HeaderProvider } from '../context/header';
+import { NoPageFound } from './NoPageFound';
+import ErrorBoundary from './errorBoundry/ErrorBoundry';
 
 const Layout = () => {
   const style = {
@@ -26,12 +28,15 @@ const Layout = () => {
       <ThemeProvider theme={theme}>
         <HeaderProvider>
           <BrowserRouter>
-            <Header />
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/gallery/:id" element={<Gallery />} />
-            </Routes>
-            <Footer />
+            <ErrorBoundary>
+              <Header />
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/gallery/:id" element={<Gallery />} />
+                <Route path="*" element={<NoPageFound />} />
+              </Routes>
+              <Footer />
+            </ErrorBoundary>
           </BrowserRouter>
         </HeaderProvider>
       </ThemeProvider>

@@ -9,6 +9,7 @@ import { ImageModal } from '../imageModal';
 import { gallery } from './images';
 import { useHeaderContext } from '../../context/header';
 import { motion } from 'framer-motion';
+import { NoPageFound } from '../NoPageFound';
 
 export interface IGallery {
   id: number;
@@ -98,68 +99,75 @@ export const Gallery = () => {
     animate: { y: 0, opacity: 1 },
   };
 
+  console.log({ PARAM: params });
   return (
-    <Grid
-      container
-      style={style.container}
-      display="flex"
-      flexDirection="column"
-    >
-      {openModal && (
-        <ImageModal
-          image={modalImage}
-          open={openModal}
-          handleClose={closeModal}
-          imageGallery={showGallery}
-          handleModalCarousele={handleModalCarousele}
-        />
-      )}
-      <Grid
-        item
-        flexDirection="row"
-        alignItems="center"
-        style={style.link}
-        sx={{
-          display: {
-            xs: 'none',
-            md: 'flex',
-          },
-        }}
-        onClick={() => navigate('/')}
-      >
-        <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
-        <Typography>Gå tillbaka</Typography>
-      </Grid>
-
-      <ImageList variant="masonry" cols={mediaQueryMobile ? 3 : 1} gap={4}>
-        {showGallery.map((item, i) => (
-          <motion.div
-            variants={imageVariant}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: i * 0.01 }}
+    <>
+      {showGallery.length <= 0 ? (
+        <NoPageFound />
+      ) : (
+        <Grid
+          container
+          style={style.container}
+          display="flex"
+          flexDirection="column"
+        >
+          {openModal && (
+            <ImageModal
+              image={modalImage}
+              open={openModal}
+              handleClose={closeModal}
+              imageGallery={showGallery}
+              handleModalCarousele={handleModalCarousele}
+            />
+          )}
+          <Grid
+            item
+            flexDirection="row"
+            alignItems="center"
+            style={style.link}
+            sx={{
+              display: {
+                xs: 'none',
+                md: 'flex',
+              },
+            }}
+            onClick={() => navigate('/')}
           >
-            <ImageListItem
-              key={Number(item.id)}
-              sx={{
-                cursor: mediaQueryMobile ? 'pointer' : 'default',
-              }}
-            >
-              <img
-                src={`${item.imagePath}?w=248&fit=crop&auto=format`}
-                srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                style={loaded ? {} : { opacity: 0 }}
-                alt={item.imageAlt}
-                id={item.id.toString()}
-                loading="lazy"
-                title={item.gallery}
-                onClick={openImageModal}
-                onLoad={() => setLoaded(true)}
-              />
-            </ImageListItem>
-          </motion.div>
-        ))}
-      </ImageList>
-    </Grid>
+            <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
+            <Typography>Gå tillbaka</Typography>
+          </Grid>
+
+          <ImageList variant="masonry" cols={mediaQueryMobile ? 3 : 1} gap={4}>
+            {showGallery.map((item, i) => (
+              <motion.div
+                variants={imageVariant}
+                initial="initial"
+                animate="animate"
+                transition={{ delay: i * 0.01 }}
+              >
+                <ImageListItem
+                  key={Number(item.id)}
+                  sx={{
+                    cursor: mediaQueryMobile ? 'pointer' : 'default',
+                  }}
+                >
+                  <img
+                    src={`${item.imagePath}?w=248&fit=crop&auto=format`}
+                    srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    style={loaded ? {} : { opacity: 0 }}
+                    alt={item.imageAlt}
+                    id={item.id.toString()}
+                    loading="lazy"
+                    title={item.gallery}
+                    onClick={openImageModal}
+                    onLoad={() => setLoaded(true)}
+                  />
+                </ImageListItem>
+              </motion.div>
+            ))}
+          </ImageList>
+        </Grid>
+      )}
+    </>
   );
 };
