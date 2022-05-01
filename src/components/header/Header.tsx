@@ -31,7 +31,10 @@ export const Header = () => {
     },
   };
 
-  const activePage = (page: string) => setActiveLink(page);
+  const activePage = (page: string) => {
+    window.scrollTo(0, 0);
+    setActiveLink(page);
+  };
 
   return (
     <Grid container style={style.container} position="fixed">

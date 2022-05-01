@@ -10,6 +10,7 @@ import { gallery } from './images';
 import { useHeaderContext } from '../../context/header';
 import { motion } from 'framer-motion';
 import { NoPageFound } from '../NoPageFound';
+import { LockRightClick } from '../helpers';
 
 export interface IGallery {
   id: number;
@@ -53,16 +54,39 @@ export const Gallery = () => {
     },
   };
 
-  useEffect(() => {
-    if (params.id === updateGallery) return;
-    setShowGallery([]);
-    setUpdateGallery(params.id!);
-    context.handleActiveLink(params.id);
-  }, [context, params, updateGallery]);
+  const handleClose = () => {
+    setContextMenu(null);
+  };
 
-  useEffect(() => {
-    setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
-  }, [updateGallery]);
+  const [contextMenu, setContextMenu] = useState<{
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+
+  const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX - 2,
+            mouseY: event.clientY - 4,
+          }
+        : null
+    );
+  };
+
+  const handleModalCarousele = (id: any) => {
+    const imageIndex = showGallery.findIndex(
+      (e) => e.id === Number(id.target.id)
+    );
+    if (id.target.alt === 'back') {
+      if (imageIndex <= 0) return;
+      setModalImage(showGallery[imageIndex - 1]);
+    } else {
+      if (imageIndex >= showGallery.length - 1) return;
+      setModalImage(showGallery[imageIndex + 1]);
+    }
+  };
 
   const openImageModal = (e: any) => {
     if (!mediaQueryMobile) return;
@@ -81,25 +105,22 @@ export const Gallery = () => {
     setOpenModal(false);
   };
 
-  const handleModalCarousele = (id: any) => {
-    const imageIndex = showGallery.findIndex(
-      (e) => e.id === Number(id.target.id)
-    );
-    if (id.target.alt === 'back') {
-      if (imageIndex <= 0) return;
-      setModalImage(showGallery[imageIndex - 1]);
-    } else {
-      if (imageIndex >= showGallery.length - 1) return;
-      setModalImage(showGallery[imageIndex + 1]);
-    }
-  };
+  useEffect(() => {
+    if (params.id === updateGallery) return;
+    setShowGallery([]);
+    setUpdateGallery(params.id!);
+    context.handleActiveLink(params.id);
+  }, [context, params, updateGallery]);
+
+  useEffect(() => {
+    setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
+  }, [updateGallery]);
 
   const imageVariant = {
     initial: { y: -10, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
 
-  console.log({ PARAM: params });
   return (
     <>
       {showGallery.length <= 0 ? (
@@ -144,7 +165,12 @@ export const Gallery = () => {
                 initial="initial"
                 animate="animate"
                 transition={{ delay: i * 0.01 }}
+                onContextMenu={handleContextMenu}
               >
+                <LockRightClick
+                  contextMenu={contextMenu}
+                  handleClose={handleClose}
+                />
                 <ImageListItem
                   key={Number(item.id)}
                   sx={{
