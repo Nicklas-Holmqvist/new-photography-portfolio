@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material';
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 
-import { Category } from './index';
-import { useHeaderContext } from '../context/header';
-import { galleryInformation } from './gallery/galleryInformation';
-import { motion } from 'framer-motion';
+import { Category } from '../index';
+import { useHeaderContext } from '../../context/header';
+import { galleryInformation } from '../utils/text/galleryInformation';
 
 export const LandingPage = () => {
   const context = useHeaderContext();

@@ -1,6 +1,6 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Grid, Typography } from '@mui/material';
 
 export const NoPageFound = () => {
   const navigate = useNavigate();

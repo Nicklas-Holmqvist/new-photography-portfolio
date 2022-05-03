@@ -1,11 +1,11 @@
-import { Drawer, Grid } from '@mui/material';
-import React, { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { Drawer, Grid } from '@mui/material';
+import React, { useState } from 'react';
 
-import { Footer } from '../..';
+import { Footer } from '../';
 
 export const MobileMenu = () => {
   const menuItems: { name: string; path: string }[] = [

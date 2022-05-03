@@ -1,6 +1,6 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 
-import { NoPageFound } from '../NoPageFound';
+import { NoPageFound } from '../noPageFound/NoPageFound';
 
 interface Props {
   children: ReactNode;

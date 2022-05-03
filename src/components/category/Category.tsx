@@ -1,6 +1,7 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { motion } from 'framer-motion';
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Button, Grid, Typography } from '@mui/material';
+
 import { useNavigate } from 'react-router-dom';
 
 interface ICategory {
