@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
-import Layout from './components/Layout';
+
+import { Providers } from './providers/Providers';
 
 function App() {
-  return <Layout />;
+  return <Providers />;
 }
 
 export default App;

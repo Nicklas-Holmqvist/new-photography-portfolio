@@ -1,16 +1,16 @@
-import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import React, { useEffect, useState } from 'react';
+import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 
+import { gallery } from '../utils/images';
 import { ImageModal } from '../imageModal';
-import { gallery } from './images';
-import { useHeaderContext } from '../../context/header';
-import { motion } from 'framer-motion';
-import { NoPageFound } from '../NoPageFound';
+import { NoPageFound } from '../noPageFound/NoPageFound';
 import { LockRightClick } from '../helpers';
+import { useHeaderContext } from '../../context/header';
 
 export interface IGallery {
   id: number;

@@ -1,11 +1,11 @@
-import { Grid, IconButton, Typography } from '@mui/material';
 import React from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { Grid, IconButton, Typography } from '@mui/material';
 
 export const Footer = () => {
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');

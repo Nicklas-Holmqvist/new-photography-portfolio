@@ -1,4 +1,4 @@
-import { IGallery } from './Gallery';
+import { IGallery } from '../gallery/Gallery';
 
 export const gallery: IGallery[] = [
   {

@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
-import { MenuListItem } from './components';
 import Logo from '../utils/icons/logo-daymode.png';
-import { MobileMenu } from './components/MobileMenu';
+import { MobileMenu } from '../mobileMenu/MobileMenu';
+import { MenuListItem } from './components';
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');

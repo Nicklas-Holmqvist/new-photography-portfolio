@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Grid } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-
 import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
+import { Grid } from '@mui/material';
+import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+
 import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
 import { IGallery } from '../gallery';
-import { motion } from 'framer-motion';
 import { LockRightClick } from '../helpers';
 
 export const ImageModal = (props: {
