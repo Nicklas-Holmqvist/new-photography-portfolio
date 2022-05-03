@@ -12,6 +12,6 @@ When the basic design and functions is done I will start to implement a connecti
 From Contentful I will fetch all my content like texts and images.
 We will see what the future will be... maby a new portfolio again but with another stack ^^
 
-### Link to the not done page
-It will be on my own domain soon
-[Linky link](https://nicklas-holmqvist.netlify.app/)
+### Link to the page
+Adding features small bit at a time
+[Linky link](https://www.nicklasholmqvist.se/)
