@@ -3,7 +3,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
@@ -17,10 +16,6 @@ export const ImageModal = (props: {
   imageGallery: IGallery[];
   handleModalCarousele: any;
 }) => {
-  const [isImageLandscape, setIsImageLandscape] = useState<boolean | undefined>(
-    undefined
-  );
-  const minWidth = useMediaQuery('(min-width:940px)');
   const style = {
     modalContainer: {},
     imageContainer: {
@@ -36,10 +31,10 @@ export const ImageModal = (props: {
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      transition: 'ease',
+      backgroundImage: `url(${props.image.imagePath})`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',
     },
   };
 
@@ -62,16 +57,6 @@ export const ImageModal = (props: {
           }
         : null
     );
-  };
-
-  const imageAspect = (event: any) => {
-    const image: HTMLImageElement = event.target;
-    const imageHeight = image.offsetHeight;
-    const imageWidth = image.offsetWidth;
-    if (imageHeight < imageWidth) return setIsImageLandscape(false);
-    if (imageHeight === imageWidth && !minWidth)
-      return setIsImageLandscape(false);
-    else return setIsImageLandscape(true);
   };
 
   return (
@@ -109,6 +94,7 @@ export const ImageModal = (props: {
             <CloseIcon
               sx={{
                 color: 'white',
+
                 fontSize: 36,
               }}
               onClick={props.handleClose}
@@ -123,9 +109,7 @@ export const ImageModal = (props: {
               id={props.image.id}
               src={BackIcon}
               alt="back"
-              onClick={(e) => {
-                props.handleModalCarousele(e);
-              }}
+              onClick={(e) => props.handleModalCarousele(e)}
               style={{
                 color: 'white',
                 paddingRight: '2rem',
@@ -137,17 +121,7 @@ export const ImageModal = (props: {
             style={style.image}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-          >
-            <img
-              id={props.image.id}
-              src={props.image.imagePath}
-              alt="forward"
-              loading="lazy"
-              height={isImageLandscape ? '100%' : 'fit'}
-              width={isImageLandscape ? 'fit' : '100%'}
-              onLoad={imageAspect}
-            />
-          </motion.div>
+          ></motion.div>
           <motion.div
             style={{ cursor: 'pointer' }}
             initial={{ scale: 0.9, opacity: 0 }}
@@ -158,9 +132,7 @@ export const ImageModal = (props: {
               src={ForwardIcon}
               alt="forward"
               loading="lazy"
-              onClick={(e) => {
-                props.handleModalCarousele(e);
-              }}
+              onClick={(e) => props.handleModalCarousele(e)}
               style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
             />
           </motion.div>
