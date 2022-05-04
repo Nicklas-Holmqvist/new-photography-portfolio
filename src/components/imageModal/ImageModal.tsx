@@ -2,7 +2,7 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import BackIcon from '../utils/icons/backIcon.png';
@@ -20,7 +20,6 @@ export const ImageModal = (props: {
   const [isImageLandscape, setIsImageLandscape] = useState<boolean | undefined>(
     undefined
   );
-  const [hideImage, setHideImage] = useState<boolean>(false);
   const minWidth = useMediaQuery('(min-width:940px)');
   const style = {
     modalContainer: {},
@@ -34,7 +33,6 @@ export const ImageModal = (props: {
       transform: 'translate(-50%, -50%)',
     },
     image: {
-      opacity: hideImage ? 0 : 1,
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
