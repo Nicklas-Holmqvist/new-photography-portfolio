@@ -16,6 +16,10 @@ export const ImageModal = (props: {
   imageGallery: IGallery[];
   handleModalCarousele: any;
 }) => {
+  const [isImageLandscape, setIsImageLandscape] = useState<boolean | undefined>(
+    undefined
+  );
+  const [hideImage, setHideImage] = useState<boolean>(false);
   const style = {
     modalContainer: {},
     imageContainer: {
@@ -28,13 +32,14 @@ export const ImageModal = (props: {
       transform: 'translate(-50%, -50%)',
     },
     image: {
+      opacity: hideImage ? 0 : 1,
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
-      backgroundImage: `url(${props.image.imagePath})`,
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'contain',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      transition: 'ease',
     },
   };
 
@@ -57,6 +62,15 @@ export const ImageModal = (props: {
           }
         : null
     );
+  };
+
+  const imageAspect = (event: any) => {
+    const image: HTMLImageElement = event.target;
+    const imageHeight = image.offsetHeight;
+    const imageWidth = image.offsetWidth;
+    if (imageHeight < imageWidth) setIsImageLandscape(false);
+    else setIsImageLandscape(true);
+    setHideImage(false);
   };
 
   return (
@@ -94,7 +108,6 @@ export const ImageModal = (props: {
             <CloseIcon
               sx={{
                 color: 'white',
-
                 fontSize: 36,
               }}
               onClick={props.handleClose}
@@ -109,7 +122,10 @@ export const ImageModal = (props: {
               id={props.image.id}
               src={BackIcon}
               alt="back"
-              onClick={(e) => props.handleModalCarousele(e)}
+              onClick={(e) => {
+                setHideImage(true);
+                props.handleModalCarousele(e);
+              }}
               style={{
                 color: 'white',
                 paddingRight: '2rem',
@@ -121,7 +137,17 @@ export const ImageModal = (props: {
             style={style.image}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-          ></motion.div>
+          >
+            <img
+              id={props.image.id}
+              src={props.image.imagePath}
+              alt="forward"
+              loading="lazy"
+              height={isImageLandscape ? '80%' : 'auto'}
+              width={isImageLandscape ? 'auto' : '90%'}
+              onLoad={imageAspect}
+            />
+          </motion.div>
           <motion.div
             style={{ cursor: 'pointer' }}
             initial={{ scale: 0.9, opacity: 0 }}
@@ -132,7 +158,10 @@ export const ImageModal = (props: {
               src={ForwardIcon}
               alt="forward"
               loading="lazy"
-              onClick={(e) => props.handleModalCarousele(e)}
+              onClick={(e) => {
+                setHideImage(true);
+                props.handleModalCarousele(e);
+              }}
               style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
             />
           </motion.div>
