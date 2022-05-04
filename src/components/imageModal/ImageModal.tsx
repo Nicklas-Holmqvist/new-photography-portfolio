@@ -16,6 +16,12 @@ export const ImageModal = (props: {
   imageGallery: IGallery[];
   handleModalCarousele: any;
 }) => {
+  const currentImage = () => {
+    const image = new Image();
+    image.src = props.image.imagePath;
+    image.onload = () => (image.src = props.image.imagePath);
+    return image.src;
+  };
   const style = {
     modalContainer: {},
     imageContainer: {
@@ -31,7 +37,7 @@ export const ImageModal = (props: {
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
-      backgroundImage: `url(${props.image.imagePath})`,
+      backgroundImage: `url(${currentImage()})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain',
