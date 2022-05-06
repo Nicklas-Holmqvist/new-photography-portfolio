@@ -2,7 +2,7 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { Grid } from '@mui/material';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BackIcon from '../utils/icons/backIcon.png';
 import ForwardIcon from '../utils/icons/forwardIcon.png';
@@ -14,14 +14,9 @@ export const ImageModal = (props: {
   open: boolean;
   handleClose: any;
   imageGallery: IGallery[];
-  handleModalCarousele: any;
 }) => {
-  const currentImage = () => {
-    const image = new Image();
-    image.src = props.image.imagePath;
-    image.onload = () => (image.src = props.image.imagePath);
-    return image.src;
-  };
+  const [modalImage, setModalImage] = useState<any>('');
+
   const style = {
     modalContainer: {},
     imageContainer: {
@@ -37,11 +32,24 @@ export const ImageModal = (props: {
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
-      backgroundImage: `url(${currentImage()})`,
+      backgroundImage: `url(${modalImage.imagePath})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain',
     },
+  };
+
+  const handleModalCarousele = (id: any) => {
+    const imageIndex = props.imageGallery.findIndex(
+      (e) => e.id === Number(id.target.id)
+    );
+    if (id.target.alt === 'back') {
+      if (imageIndex <= 0) return;
+      setModalImage(props.imageGallery[imageIndex - 1]);
+    } else {
+      if (imageIndex >= props.imageGallery.length - 1) return;
+      setModalImage(props.imageGallery[imageIndex + 1]);
+    }
   };
 
   const handleClose = () => {
@@ -64,6 +72,10 @@ export const ImageModal = (props: {
         : null
     );
   };
+
+  useEffect(() => {
+    setModalImage(props.image);
+  }, [props.image]);
 
   return (
     <Grid container position="relative" style={style.modalContainer}>
@@ -112,10 +124,10 @@ export const ImageModal = (props: {
             animate={{ scale: 1, opacity: 1 }}
           >
             <img
-              id={props.image.id}
+              id={modalImage.id}
               src={BackIcon}
               alt="back"
-              onClick={(e) => props.handleModalCarousele(e)}
+              onClick={(e) => handleModalCarousele(e)}
               style={{
                 color: 'white',
                 paddingRight: '2rem',
@@ -134,11 +146,11 @@ export const ImageModal = (props: {
             animate={{ scale: 1, opacity: 1 }}
           >
             <img
-              id={props.image.id}
+              id={modalImage.id}
               src={ForwardIcon}
               alt="forward"
               loading="lazy"
-              onClick={(e) => props.handleModalCarousele(e)}
+              onClick={(e) => handleModalCarousele(e)}
               style={{ color: 'white', paddingLeft: '2rem', cursor: 'pointer' }}
             />
           </motion.div>

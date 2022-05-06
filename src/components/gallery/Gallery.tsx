@@ -75,19 +75,6 @@ export const Gallery = () => {
     );
   };
 
-  const handleModalCarousele = (id: any) => {
-    const imageIndex = showGallery.findIndex(
-      (e) => e.id === Number(id.target.id)
-    );
-    if (id.target.alt === 'back') {
-      if (imageIndex <= 0) return;
-      setModalImage(showGallery[imageIndex - 1]);
-    } else {
-      if (imageIndex >= showGallery.length - 1) return;
-      setModalImage(showGallery[imageIndex + 1]);
-    }
-  };
-
   const openImageModal = (e: any) => {
     if (!mediaQueryMobile) return;
     const target = e.target;
@@ -138,7 +125,6 @@ export const Gallery = () => {
               open={openModal}
               handleClose={closeModal}
               imageGallery={showGallery}
-              handleModalCarousele={handleModalCarousele}
             />
           )}
           <Grid
