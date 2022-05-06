@@ -47,6 +47,7 @@ export const Gallery = () => {
       display: 'flex',
       maxWidth: 1400,
       width: '100%',
+      minHeight: '100vh',
       paddingTop: '6rem',
       margin: 'auto',
     },
@@ -111,7 +112,7 @@ export const Gallery = () => {
 
   return (
     <>
-      {showGallery.length <= 0 ? (
+      {showGallery.length < 0 ? (
         <NoPageFound />
       ) : (
         <Grid container style={style.container} flexDirection="column">
