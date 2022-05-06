@@ -9,3 +9,4 @@ export * from './landingPage';
 export * from './layout';
 export * from './mobileMenu';
 export * from './noPageFound';
+export * from './scrollToTop';

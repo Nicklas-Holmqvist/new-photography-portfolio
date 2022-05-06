@@ -44,6 +44,7 @@ export const Gallery = () => {
 
   const style = {
     container: {
+      display: 'flex',
       maxWidth: 1400,
       width: '100%',
       paddingTop: '6rem',
@@ -113,12 +114,7 @@ export const Gallery = () => {
       {showGallery.length <= 0 ? (
         <NoPageFound />
       ) : (
-        <Grid
-          container
-          style={style.container}
-          display="flex"
-          flexDirection="column"
-        >
+        <Grid container style={style.container} flexDirection="column">
           {openModal && (
             <ImageModal
               image={modalImage}
