@@ -5,12 +5,12 @@ import { animateScroll as scroll } from 'react-scroll';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const ScrollToTop = () => {
-  const mediaQueryMobile = useMediaQuery('(min-width:600px)');
+  const mediaQueryMobile = useMediaQuery('(min-width:900px)');
   return (
     <Grid
       sx={{
         position: 'fixed',
-        bottom: mediaQueryMobile ? 95 : 57,
+        bottom: mediaQueryMobile ? 42 : 57,
         right: mediaQueryMobile ? 28 : 4,
       }}
     >
