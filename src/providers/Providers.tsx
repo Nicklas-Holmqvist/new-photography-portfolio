@@ -8,14 +8,17 @@ import '@fontsource/poppins';
 import { theme } from '../theme';
 import { Layout } from '../components';
 import { HeaderProvider } from '../context/gallery';
+import { HelmetProvider } from 'react-helmet-async';
 
 export const Providers = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <HeaderProvider>
-          <Layout />
-        </HeaderProvider>
+        <HelmetProvider>
+          <HeaderProvider>
+            <Layout />
+          </HeaderProvider>
+        </HelmetProvider>
       </ThemeProvider>
     </>
   );

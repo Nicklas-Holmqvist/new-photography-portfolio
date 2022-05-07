@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { Category } from '../index';
 import { useHeaderContext } from '../../context/gallery';
 import { galleryInformation } from '../utils/text/galleryInformation';
+import { Helmet } from 'react-helmet-async';
 
 export const LandingPage = () => {
   const context = useHeaderContext();
@@ -35,6 +36,13 @@ export const LandingPage = () => {
           animate="animate"
           transition={{ delay: i * 0.5 }}
         >
+          <Helmet>
+            <title>Startsida | nicklasholmqvist.se</title>
+            <meta
+              name="startsida"
+              content="Fotografisk portfolio och CV av Nicklas Holmqvist"
+            />
+          </Helmet>
           <Grid item className="category-section" key={category.title}>
             <Category
               title={category.title}
