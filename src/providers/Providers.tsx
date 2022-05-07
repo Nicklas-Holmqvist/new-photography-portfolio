@@ -7,7 +7,7 @@ import '@fontsource/poppins';
 
 import { theme } from '../theme';
 import { Layout } from '../components';
-import { HeaderProvider } from '../context/header';
+import { HeaderProvider } from '../context/gallery';
 
 export const Providers = () => {
   return (

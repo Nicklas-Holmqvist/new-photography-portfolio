@@ -13,6 +13,7 @@ import { ScrollToTop } from '../';
 export const Footer = () => {
   const [showToTop, setShowToTop] = useState<boolean>(false);
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
+
   const style = {
     container: {
       maxWidth: 1400,
