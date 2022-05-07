@@ -11,6 +11,8 @@ import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
 import { LockRightClick } from '../helpers';
 import { useHeaderContext } from '../../context/gallery';
+import { galleryInformation } from '../utils/text/galleryInformation';
+import { Helmet } from 'react-helmet-async';
 
 export interface IGallery {
   id: number;
@@ -34,6 +36,7 @@ export const Gallery = () => {
   const params = useParams();
   const [updateGallery, setUpdateGallery] = useState('');
   const [showGallery, setShowGallery] = useState<IGallery[]>([]);
+  const [galleryTitle, setGalleryTitle] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
   const [loaded, setLoaded] = useState<boolean>(false);
@@ -102,8 +105,13 @@ export const Gallery = () => {
   }, [context, params, updateGallery]);
 
   useEffect(() => {
+    const galleryTitle = galleryInformation.filter(
+      (item) => item.gallery === params.id
+    );
     setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
-  }, [updateGallery]);
+    if (galleryTitle.length <= 0) return setGalleryTitle('Ingenting!');
+    setGalleryTitle(galleryTitle[0].title);
+  }, [params.id, updateGallery]);
 
   const imageVariant = {
     initial: { y: -10, opacity: 0 },
@@ -112,6 +120,10 @@ export const Gallery = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Galleri {galleryTitle} | nicklasholmqvist.se</title>
+        <meta name="galleri" content="Fotogalleri av Nicklas Holmqvist" />
+      </Helmet>
       {context.noGallery ? (
         <NoPageFound />
       ) : (
