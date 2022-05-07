@@ -1,5 +1,6 @@
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +13,6 @@ import { NoPageFound } from '../noPageFound/NoPageFound';
 import { LockRightClick } from '../helpers';
 import { useHeaderContext } from '../../context/gallery';
 import { galleryInformation } from '../utils/text/galleryInformation';
-import { Helmet } from 'react-helmet-async';
 
 export interface IGallery {
   id: number;
@@ -40,6 +40,7 @@ export const Gallery = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [hover, setHover] = useState<boolean>(false);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
@@ -168,14 +169,17 @@ export const Gallery = () => {
                 />
                 <ImageListItem
                   key={Number(item.id)}
+                  style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
                   sx={{
                     cursor: mediaQueryMobile ? 'pointer' : 'default',
+                    '&:hover': {
+                      transform: 'scale(1.002)',
+                    },
                   }}
                 >
                   <img
                     src={`${item.imagePath}?w=248&fit=crop&auto=format`}
                     srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    style={loaded ? {} : { opacity: 0 }}
                     alt={item.imageAlt}
                     id={item.id.toString()}
                     loading="lazy"
