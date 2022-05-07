@@ -40,7 +40,6 @@ export const Gallery = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<any>('');
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [hover, setHover] = useState<boolean>(false);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
