@@ -18,7 +18,10 @@ export const ScrollToTop = () => {
         <ArrowCircleUpIcon
           color="primary"
           sx={{
-            fontSize: 48,
+            fontSize: {
+              xs: 36,
+              md: 48,
+            },
             cursor: 'pointer',
           }}
           onClick={() => scroll.scrollToTop()}
