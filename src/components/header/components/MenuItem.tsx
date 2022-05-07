@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
-import { useHeaderContext } from '../../../context/header';
+import { useHeaderContext } from '../../../context/gallery';
 
 export const MenuListItem = (props: {
   path: string;

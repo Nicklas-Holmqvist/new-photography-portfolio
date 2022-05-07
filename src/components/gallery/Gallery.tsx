@@ -10,7 +10,7 @@ import { gallery } from '../utils/images';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
 import { LockRightClick } from '../helpers';
-import { useHeaderContext } from '../../context/header';
+import { useHeaderContext } from '../../context/gallery';
 
 export interface IGallery {
   id: number;
@@ -112,7 +112,7 @@ export const Gallery = () => {
 
   return (
     <>
-      {showGallery.length < 0 ? (
+      {context.noGallery ? (
         <NoPageFound />
       ) : (
         <Grid container style={style.container} flexDirection="column">

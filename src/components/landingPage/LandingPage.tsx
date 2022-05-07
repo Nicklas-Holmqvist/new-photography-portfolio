@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 
 import { Category } from '../index';
-import { useHeaderContext } from '../../context/header';
+import { useHeaderContext } from '../../context/gallery';
 import { galleryInformation } from '../utils/text/galleryInformation';
 
 export const LandingPage = () => {

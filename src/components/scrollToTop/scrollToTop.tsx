@@ -11,11 +11,12 @@ export const ScrollToTop = () => {
       sx={{
         position: 'fixed',
         bottom: mediaQueryMobile ? 95 : 57,
-        right: mediaQueryMobile ? 48 : 4,
+        right: mediaQueryMobile ? 28 : 4,
       }}
     >
       <IconButton>
         <ArrowCircleUpIcon
+          color="primary"
           sx={{
             fontSize: 48,
             cursor: 'pointer',
