@@ -17,12 +17,14 @@ export const MenuListItem = (props: {
     normal: {
       textDecoration: 'none',
       color: '#0A0908',
+      fontSize: 20,
     },
     hover: {
       color: '#0A0908',
       textDecoration: 'none',
-      paddingBottom: 3,
+      paddingBottom: 2,
       borderBottom: '2px solid #0A0908',
+      fontSize: 20,
     },
   };
 

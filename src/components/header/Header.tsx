@@ -16,13 +16,13 @@ export const Header = () => {
       zIndex: 100,
     },
     header: {
-      padding: '1rem 2rem',
+      padding: '0.5rem 2rem',
       maxWidth: 1300,
       width: '100%',
       margin: 'auto',
     },
     logo: {
-      height: 56,
+      height: 50,
     },
     list: {
       display: 'flex',

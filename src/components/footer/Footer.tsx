@@ -3,7 +3,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Grid, IconButton, Typography } from '@mui/material';
@@ -12,7 +11,6 @@ import { ScrollToTop } from '../';
 
 export const Footer = () => {
   const [showToTop, setShowToTop] = useState<boolean>(false);
-  const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
   const style = {
     container: {
@@ -31,39 +29,13 @@ export const Footer = () => {
       <Grid
         container
         display="flex"
-        flexDirection={!mediaQueryMobile ? 'column-reverse' : 'column'}
+        flexDirection={'column'}
         justifyContent="center"
         alignItems="center"
         style={style.container}
       >
         <Grid
           item
-          md={6}
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Typography
-            sx={{
-              fontSize: {
-                xs: 12,
-                md: 16,
-              },
-              mb: {
-                xs: 2,
-                md: 0,
-              },
-              px: {
-                xs: 2,
-              },
-            }}
-          >
-            Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          md={6}
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -78,7 +50,6 @@ export const Footer = () => {
               sx={{
                 m: {
                   xs: 1,
-                  md: 3,
                 },
               }}
             >
@@ -94,7 +65,6 @@ export const Footer = () => {
               sx={{
                 m: {
                   xs: 1,
-                  md: 3,
                 },
               }}
             >
@@ -110,7 +80,6 @@ export const Footer = () => {
               sx={{
                 m: {
                   xs: 1,
-                  md: 3,
                 },
               }}
             >
@@ -126,7 +95,6 @@ export const Footer = () => {
               sx={{
                 m: {
                   xs: 1,
-                  md: 3,
                 },
               }}
             >
@@ -142,13 +110,30 @@ export const Footer = () => {
               sx={{
                 m: {
                   xs: 1,
-                  md: 3,
                 },
               }}
             >
               <FacebookIcon color="primary" />
             </IconButton>
           </a>
+        </Grid>
+        <Grid item display="flex" justifyContent="center" alignItems="center">
+          <Typography
+            sx={{
+              fontSize: {
+                xs: 12,
+              },
+              mb: {
+                xs: 2,
+                md: 0,
+              },
+              px: {
+                xs: 2,
+              },
+            }}
+          >
+            Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
+          </Typography>
         </Grid>
         {!showToTop && <ScrollToTop />}
       </Grid>
