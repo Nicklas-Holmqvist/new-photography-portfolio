@@ -79,6 +79,7 @@ export const Gallery = () => {
         : null
     );
   };
+  console.log(modalImage);
 
   const openImageModal = (e: any) => {
     if (!mediaQueryMobile) return;
@@ -133,7 +134,6 @@ export const Gallery = () => {
               image={modalImage}
               open={openModal}
               handleClose={closeModal}
-              imageGallery={showGallery}
             />
           )}
           <Grid
