@@ -83,6 +83,7 @@ export const Category = (props: ICategory) => {
               <Button
                 variant="outlined"
                 onClick={() => {
+                  window.scrollTo(0, 0);
                   navigate(`/gallery/${props.anchor}`);
                 }}
                 size="large"
