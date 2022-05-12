@@ -2,8 +2,8 @@ import { createClient } from 'contentful';
 
 const useContentful = () => {
   const client = createClient({
-    space: 'mae9ysibqeni',
-    accessToken: '-RPJ0yHenKC7jm9vjpKa730NpHRvXWg3BDeLxE5H_28',
+    space: process.env.REACT_APP_CONTENTFUL_SPACE as string,
+    accessToken: process.env.REACT_APP_CONTENTFUL_ACCESSTOKEN as string,
   });
 
   return { client };
