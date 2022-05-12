@@ -8,18 +8,13 @@ import React, { useEffect, useState } from 'react';
 import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 
 import { gallery } from '../utils/images';
+import { IGallery } from '../../types';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
 import { LockRightClick } from '../helpers';
 import { useHeaderContext } from '../../context/gallery';
 import { galleryInformation } from '../utils/text/galleryInformation';
 
-export interface IGallery {
-  id: number;
-  imagePath: string;
-  imageAlt: string;
-  gallery: string;
-}
 export interface IGalleryInformation {
   gallery: string;
   title: string;
@@ -30,7 +25,6 @@ export interface IGalleryInformation {
   anchor: string;
   showBtn: boolean;
 }
-
 export const Gallery = () => {
   const context = useHeaderContext();
   const params = useParams();
@@ -79,7 +73,6 @@ export const Gallery = () => {
         : null
     );
   };
-  console.log(modalImage);
 
   const openImageModal = (e: any) => {
     if (!mediaQueryMobile) return;

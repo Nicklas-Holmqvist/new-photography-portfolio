@@ -1,14 +1,26 @@
 import { Grid } from '@mui/material';
 import { motion } from 'framer-motion';
-import React, { useEffect } from 'react';
-
-import { Category } from '../index';
-import { useHeaderContext } from '../../context/gallery';
-import { galleryInformation } from '../utils/text/galleryInformation';
 import { Helmet } from 'react-helmet-async';
+import { sortBy } from 'lodash';
+import React, { useEffect, useState } from 'react';
+
+import getCategories from '../../contentful/getCategories';
+import { Category } from '../index';
+import { ICategory } from '../../types';
+import { useHeaderContext } from '../../context/gallery';
 
 export const LandingPage = () => {
   const context = useHeaderContext();
+  const [categories, setCategories] = useState<any[]>();
+
+  useEffect(() => {
+    const getEntries = async () => {
+      const categories = await getCategories();
+      setCategories(categories);
+    };
+    getEntries();
+  }, []);
+
   useEffect(() => {
     context.handleActiveLink('');
   }, [context]);
@@ -17,6 +29,8 @@ export const LandingPage = () => {
     initial: { y: 0, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
+
+  const filteredCategories: ICategory[] = sortBy(categories, 'order');
 
   return (
     <Grid
@@ -29,7 +43,7 @@ export const LandingPage = () => {
         },
       }}
     >
-      {galleryInformation.map((category, i) => (
+      {filteredCategories.map((category, i: number) => (
         <motion.div
           variants={categoryVariants}
           initial="initial"
@@ -44,15 +58,7 @@ export const LandingPage = () => {
             />
           </Helmet>
           <Grid item className="category-section" key={category.title}>
-            <Category
-              title={category.title}
-              information={category.information}
-              imagePath={category.imagePath}
-              imageAlt={category.imagePath}
-              position={category.reverse}
-              anchor={category.anchor}
-              showBtn={category.showBtn}
-            />
+            <Category category={category} />
           </Grid>
         </motion.div>
       ))}

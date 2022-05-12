@@ -1,20 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Typography } from '@mui/material';
 
-import { useNavigate } from 'react-router-dom';
+import { ICategory } from '../../types';
 
-interface ICategory {
-  title: string;
-  information: string;
-  imagePath: string;
-  imageAlt: string;
-  position: boolean;
-  anchor: string;
-  showBtn: boolean;
-}
-
-export const Category = (props: ICategory) => {
+export const Category = (props: { category: ICategory }) => {
   const navigate = useNavigate();
   const style = {
     container: {
@@ -34,7 +25,7 @@ export const Category = (props: ICategory) => {
     image: {
       width: '100%',
       height: 500,
-      backgroundImage: `url(${props.imageAlt})`,
+      backgroundImage: `url(https:${props.category.categoryImage.file.url})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -46,8 +37,8 @@ export const Category = (props: ICategory) => {
       container
       display="flex"
       justifyContent="space-between"
-      flexDirection={props.position ? 'row-reverse' : 'row'}
-      id={props.anchor}
+      flexDirection={props.category.reverseView ? 'row-reverse' : 'row'}
+      id={props.category.anchor}
       style={style.container}
     >
       <Grid
@@ -74,17 +65,17 @@ export const Category = (props: ICategory) => {
             sx={{ margin: 'auto' }}
           >
             <Typography style={style.title} variant="h2">
-              {props.title}
+              {props.category.title}
             </Typography>
             <Typography style={style.information} sx={{ maxWidth: '64ch' }}>
-              {props.information}
+              {props.category.description}
             </Typography>
-            {props.showBtn && (
+            {props.category.showBtn && (
               <Button
                 variant="outlined"
                 onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate(`/gallery/${props.anchor}`);
+                  navigate(`/gallery/${props.category.anchor}`);
                 }}
                 size="large"
                 sx={{ borderColor: 'grey' }}
