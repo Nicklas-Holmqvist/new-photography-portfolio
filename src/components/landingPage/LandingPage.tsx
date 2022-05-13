@@ -7,10 +7,10 @@ import React, { useEffect, useState } from 'react';
 import getCategories from '../../contentful/getCategories';
 import { Category } from '../index';
 import { ICategory } from '../../types';
-import { useHeaderContext } from '../../context/gallery';
+import { useActiveGalleryContext } from '../../context/activeGallery';
 
 export const LandingPage = () => {
-  const context = useHeaderContext();
+  const context = useActiveGalleryContext();
   const [categories, setCategories] = useState<any[]>();
 
   useEffect(() => {

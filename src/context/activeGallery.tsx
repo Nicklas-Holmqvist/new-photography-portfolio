@@ -5,9 +5,7 @@ import React, {
   FunctionComponent,
 } from 'react';
 
-import { gallery } from '../components/utils/images';
-
-export const HeaderContext = createContext<Context>(undefined!);
+export const ActiveGalleryContext = createContext<Context>(undefined!);
 
 type Context = {
   activeLink: string;
@@ -15,21 +13,21 @@ type Context = {
   handleActiveLink: (e: any) => void;
 };
 
-export const HeaderProvider: FunctionComponent = ({ children }) => {
+export const ActiveGalleryProvider: FunctionComponent = ({ children }) => {
   const [activeLink, setActiveLink] = useState<string>('');
   const [noGallery, setNoGallery] = useState<boolean>(false);
 
-  const handleActiveLink = (e: any) => {
-    const findGallery = gallery.find((item) => item.gallery === e);
-    setActiveLink(e);
-    if (findGallery !== undefined) {
+  const handleActiveLink = (galleryName: string) => {
+    console.log(galleryName);
+    setActiveLink(galleryName);
+    if (galleryName !== '') {
       setNoGallery(false);
       return;
     } else return setNoGallery(true);
   };
 
   return (
-    <HeaderContext.Provider
+    <ActiveGalleryContext.Provider
       value={{
         noGallery,
         activeLink,
@@ -37,8 +35,9 @@ export const HeaderProvider: FunctionComponent = ({ children }) => {
       }}
     >
       {children}
-    </HeaderContext.Provider>
+    </ActiveGalleryContext.Provider>
   );
 };
 
-export const useHeaderContext = () => useContext<Context>(HeaderContext);
+export const useActiveGalleryContext = () =>
+  useContext<Context>(ActiveGalleryContext);

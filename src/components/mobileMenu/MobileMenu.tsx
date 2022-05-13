@@ -15,11 +15,11 @@ export const MobileMenu = () => {
     },
     {
       name: 'Landskap',
-      path: '/gallery/landscape',
+      path: '/gallery/landscapes',
     },
     {
       name: 'Gamla byggnader',
-      path: '/gallery/oldBuildings',
+      path: '/gallery/old-buildings',
     },
   ];
 

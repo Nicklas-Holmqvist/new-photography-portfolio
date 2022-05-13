@@ -7,7 +7,7 @@ import '@fontsource/poppins';
 
 import { theme } from '../theme';
 import { Layout } from '../components';
-import { HeaderProvider } from '../context/gallery';
+import { ActiveGalleryProvider } from '../context/activeGallery';
 import { HelmetProvider } from 'react-helmet-async';
 
 export const Providers = () => {
@@ -15,9 +15,9 @@ export const Providers = () => {
     <>
       <ThemeProvider theme={theme}>
         <HelmetProvider>
-          <HeaderProvider>
+          <ActiveGalleryProvider>
             <Layout />
-          </HeaderProvider>
+          </ActiveGalleryProvider>
         </HelmetProvider>
       </ThemeProvider>
     </>
