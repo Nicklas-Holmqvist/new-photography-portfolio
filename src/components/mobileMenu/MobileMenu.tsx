@@ -76,13 +76,14 @@ export const MobileMenu = () => {
               flexDirection: 'column',
             }}
           >
-            {menuItems.map((item, i) => (
+            {menuItems.map((item, index) => (
               <motion.div
                 variants={imageVariant}
                 initial="initial"
                 animate="animate"
-                transition={{ delay: i * 0.2, duration: 0.2 }}
+                transition={{ delay: index * 0.2, duration: 0.2 }}
                 style={{ width: '100vw' }}
+                key={index}
               >
                 <li
                   onClick={() => {

@@ -135,7 +135,7 @@ export const Footer = () => {
             Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
           </Typography>
         </Grid>
-        {!showToTop && <ScrollToTop />}
+        {showToTop && <ScrollToTop />}
       </Grid>
     </VisibilitySensor>
   );
