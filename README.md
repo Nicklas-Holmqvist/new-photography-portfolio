@@ -58,6 +58,13 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 - Anchor
 - Order
 
+#### Left to create
+- Social icon for mapping in footer
+- Images like logo in the header
+- ...then all content is controlled by Contentful
+- ...you are not really ever done so
+- ...prepare for e-business
+
 ## Future implements
 
 We will see what the future will be... maby a e-business for my photographs
