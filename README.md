@@ -25,7 +25,7 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 - Mui (partial)
 - Framer-motion
 - React-router
-- Lodash (simple sorting)
+- Lodash (simpler sorting)
 - React-visibility-sensor
 - React-scroll (scrollToTop)
 - React-helmet (Meta data)
@@ -44,7 +44,7 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 - Revers image (flexDirection)
 - Show btn
 - Button text (planned)
-- Path (ex. /gallery/<name>)
+- Path (ex. /gallery/"name")
 - Gallery (english word for the gallery)
 - Order (view order)
   
