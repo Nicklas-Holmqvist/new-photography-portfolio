@@ -47,12 +47,13 @@ export const LandingPage = () => {
         },
       }}
     >
-      {filteredCategories.map((category, i: number) => (
+      {filteredCategories.map((category, index: number) => (
         <motion.div
           variants={categoryVariants}
           initial="initial"
           animate="animate"
-          transition={{ delay: i * 0.5 }}
+          transition={{ delay: index * 0.5 }}
+          key={index}
         >
           <Helmet>
             <title>Startsida | nicklasholmqvist.se</title>
@@ -61,7 +62,7 @@ export const LandingPage = () => {
               content="Fotografisk portfolio och CV av Nicklas Holmqvist"
             />
           </Helmet>
-          <Grid item className="category-section" key={category.title}>
+          <Grid item className="category-section">
             <Category category={category} />
           </Grid>
         </motion.div>
