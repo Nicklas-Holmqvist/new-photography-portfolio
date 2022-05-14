@@ -6,23 +6,9 @@ import { Drawer, Grid } from '@mui/material';
 import React, { useState } from 'react';
 
 import { Footer } from '../';
+import { IMenuItem } from '../../types';
 
-export const MobileMenu = () => {
-  const menuItems: { name: string; path: string }[] = [
-    {
-      name: 'Hem',
-      path: '/',
-    },
-    {
-      name: 'Landskap',
-      path: '/gallery/landscapes',
-    },
-    {
-      name: 'Gamla byggnader',
-      path: '/gallery/old-buildings',
-    },
-  ];
-
+export const MobileMenu = (props: { menuItems: IMenuItem[] }) => {
   const navigateTo = useNavigate();
   const [drawer, setDrawer] = useState(false);
 
@@ -76,7 +62,7 @@ export const MobileMenu = () => {
               flexDirection: 'column',
             }}
           >
-            {menuItems.map((item, index) => (
+            {props.menuItems.map((item, index) => (
               <motion.div
                 variants={imageVariant}
                 initial="initial"
@@ -98,7 +84,7 @@ export const MobileMenu = () => {
                     cursor: 'pointer',
                   }}
                 >
-                  {item.name}
+                  {item.title}
                 </li>
               </motion.div>
             ))}

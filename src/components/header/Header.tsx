@@ -1,14 +1,18 @@
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { sortBy } from 'lodash';
+import React, { useEffect, useState } from 'react';
 
 import Logo from '../utils/icons/logo-daymode.png';
+import getMenuItems from '../../contentful/getMenuItems';
 import { MobileMenu } from '../mobileMenu/MobileMenu';
 import { MenuListItem } from './components';
+import { IMenuItem } from '../../types';
 
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
+  const [menuItems, setMenuItems] = useState<IMenuItem[]>([]);
   const style = {
     container: {
       top: 0,
@@ -27,7 +31,7 @@ export const Header = () => {
     list: {
       display: 'flex',
       justifyContent: 'space-between',
-      width: 300,
+      width: `calc(120px * ${menuItems.length}`,
     },
   };
 
@@ -35,6 +39,17 @@ export const Header = () => {
     window.scrollTo(0, 0);
     setActiveLink(page);
   };
+
+  useEffect(() => {
+    const getEntries = async () => {
+      const items = await getMenuItems();
+      if (items === undefined) return;
+      setMenuItems(items);
+    };
+    getEntries();
+  }, []);
+
+  const sortedMenuItems = sortBy(menuItems, 'order');
 
   return (
     <Grid container style={style.container} position="fixed">
@@ -60,7 +75,7 @@ export const Header = () => {
             alignItems: 'center',
           }}
         >
-          <MobileMenu />
+          <MobileMenu menuItems={sortedMenuItems} />
         </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
@@ -97,30 +112,22 @@ export const Header = () => {
         </motion.div>
 
         <ul style={style.list}>
-          <motion.div
-            initial={{ y: -5, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            <MenuListItem
-              active={activeLink}
-              activePage={activePage}
-              path="landscapes"
-              title="Landskap"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ y: -5, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <MenuListItem
-              active={activeLink}
-              activePage={activePage}
-              path="old-buildings"
-              title="Gamla byggnader"
-            />
-          </motion.div>
+          {sortedMenuItems.map((item: IMenuItem, index: number) => (
+            <motion.div
+              initial={{ y: -5, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              key={index}
+            >
+              <MenuListItem
+                active={activeLink}
+                activePage={activePage}
+                path={item.path}
+                title={item.title}
+                anchor={item.anchor}
+              />
+            </motion.div>
+          ))}
         </ul>
       </Grid>
     </Grid>
