@@ -45,7 +45,7 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 - Show btn
 - Button text (planned)
 - Path (ex. /gallery/"name")
-- Gallery (english word for the gallery)
+- Gallery (simple path ex. old-buildings)
 - Order (view order)
   
 #### Gallery
