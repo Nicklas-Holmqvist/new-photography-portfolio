@@ -43,7 +43,8 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 - Category image
 - Revers image (flexDirection)
 - Show btn
-- Path (ex. /gallery/<name>
+- Button text (planned)
+- Path (ex. /gallery/<name>)
 - Gallery (english word for the gallery)
 - Order (view order)
   
