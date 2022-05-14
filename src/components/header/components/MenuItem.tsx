@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
-import { useHeaderContext } from '../../../context/gallery';
+import { useActiveGalleryContext } from '../../../context/activeGallery';
 
 export const MenuListItem = (props: {
   path: string;
@@ -10,7 +10,7 @@ export const MenuListItem = (props: {
   active: string;
   activePage: (event: string) => void;
 }) => {
-  const context = useHeaderContext();
+  const context = useActiveGalleryContext();
   const [hover, setHover] = useState<boolean>(false);
   const path: string = `/gallery/${props.path}`;
   const style = {

@@ -2,14 +2,14 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { Fade, Grid, Backdrop } from '@mui/material';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 
 import { LockRightClick } from '../helpers';
 
 export const ImageModal = (props: {
-  image: any;
+  image: string;
   open: boolean;
-  handleClose: any;
+  handleClose: (e: MouseEvent) => void;
 }) => {
   const style = {
     modalContainer: {},
@@ -26,7 +26,7 @@ export const ImageModal = (props: {
       maxWidth: 1200,
       width: '100%',
       height: '80vh',
-      backgroundImage: `url(${props.image.imagePath})`,
+      backgroundImage: `url(${props.image})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'contain',

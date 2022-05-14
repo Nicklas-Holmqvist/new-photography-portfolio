@@ -4,42 +4,28 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+  MouseEvent,
+  BaseSyntheticEvent,
+} from 'react';
 import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 
-import { gallery } from '../utils/images';
+import getGallery from '../../contentful/getGallery';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
+import { IGalleryImage } from '../../types';
 import { LockRightClick } from '../helpers';
-import { useHeaderContext } from '../../context/gallery';
-import { galleryInformation } from '../utils/text/galleryInformation';
-
-export interface IGallery {
-  id: number;
-  imagePath: string;
-  imageAlt: string;
-  gallery: string;
-}
-export interface IGalleryInformation {
-  gallery: string;
-  title: string;
-  information: string;
-  imagePath: string;
-  imageAlt: string;
-  reverse: boolean;
-  anchor: string;
-  showBtn: boolean;
-}
+import { useActiveGalleryContext } from '../../context/activeGallery';
 
 export const Gallery = () => {
-  const context = useHeaderContext();
+  const context = useActiveGalleryContext();
   const params = useParams();
-  const [updateGallery, setUpdateGallery] = useState('');
-  const [showGallery, setShowGallery] = useState<IGallery[]>([]);
-  const [galleryTitle, setGalleryTitle] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [modalImage, setModalImage] = useState<any>('');
+  const [modalImage, setModalImage] = useState<string>('');
   const [loaded, setLoaded] = useState<boolean>(false);
+  const [gallery, setGallery] = useState<IGalleryImage[]>([]);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
@@ -68,7 +54,7 @@ export const Gallery = () => {
     mouseY: number;
   } | null>(null);
 
-  const handleContextMenu = (event: React.MouseEvent) => {
+  const handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     setContextMenu(
       contextMenu === null
@@ -79,18 +65,12 @@ export const Gallery = () => {
         : null
     );
   };
-  console.log(modalImage);
 
-  const openImageModal = (e: any) => {
+  const openImageModal = (image: BaseSyntheticEvent) => {
     if (!mediaQueryMobile) return;
-    const target = e.target;
-    const image: IGallery = {
-      id: target.id,
-      imagePath: target.src,
-      imageAlt: target.alt,
-      gallery: target.title,
-    };
-    setModalImage(image);
+    const getImageUrl = image.target.src;
+
+    setModalImage(getImageUrl);
     setOpenModal(true);
   };
 
@@ -99,98 +79,105 @@ export const Gallery = () => {
   };
 
   useEffect(() => {
-    if (params.id === updateGallery) return;
-    setShowGallery([]);
-    setUpdateGallery(params.id!);
-    context.handleActiveLink(params.id);
-  }, [context, params, updateGallery]);
-
-  useEffect(() => {
-    const galleryTitle = galleryInformation.filter(
-      (item) => item.gallery === params.id
-    );
-    setShowGallery(gallery.filter((item) => item.gallery === updateGallery));
-    if (galleryTitle.length <= 0) return setGalleryTitle('Ingenting!');
-    setGalleryTitle(galleryTitle[0].title);
-  }, [params.id, updateGallery]);
+    const getEntries = async () => {
+      setGallery([]);
+      const gallery = await getGallery(params.id as string);
+      if (gallery?.length === 0 || gallery === undefined) {
+        context.handleActiveLink('');
+        return;
+      }
+      setGallery(gallery[0].galleryImages);
+      context.handleActiveLink(gallery[0].title);
+    };
+    getEntries();
+  }, [context, params]);
 
   const imageVariant = {
     initial: { y: -10, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
+  console.log(gallery);
 
   return (
     <>
       <Helmet>
-        <title>Galleri {galleryTitle} | nicklasholmqvist.se</title>
+        <title>Galleri | nicklasholmqvist.se</title>
         <meta name="galleri" content="Fotogalleri av Nicklas Holmqvist" />
       </Helmet>
       {context.noGallery ? (
         <NoPageFound />
       ) : (
-        <Grid container style={style.container} flexDirection="column">
-          {openModal && (
-            <ImageModal
-              image={modalImage}
-              open={openModal}
-              handleClose={closeModal}
-            />
-          )}
-          <Grid
-            item
-            flexDirection="row"
-            alignItems="center"
-            style={style.link}
-            sx={{
-              display: {
-                xs: 'none',
-                md: 'flex',
-              },
-            }}
-            onClick={() => navigate('/')}
-          >
-            <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
-            <Typography>Gå tillbaka</Typography>
-          </Grid>
-
-          <ImageList variant="masonry" cols={mediaQueryMobile ? 3 : 1} gap={4}>
-            {showGallery.map((item, i) => (
-              <motion.div
-                variants={imageVariant}
-                initial="initial"
-                animate="animate"
-                transition={{ delay: i * 0.01 }}
-                onContextMenu={handleContextMenu}
+        <>
+          <Grid container style={style.container} flexDirection="column">
+            {openModal && (
+              <ImageModal
+                image={modalImage}
+                open={openModal}
+                handleClose={closeModal}
+              />
+            )}
+            <Grid
+              item
+              flexDirection="row"
+              alignItems="center"
+              style={style.link}
+              sx={{
+                display: {
+                  xs: 'none',
+                  md: 'flex',
+                },
+              }}
+              onClick={() => navigate('/')}
+            >
+              <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
+              <Typography>Gå tillbaka</Typography>
+            </Grid>
+            {gallery.length === 0 ? (
+              <></>
+            ) : (
+              <ImageList
+                variant="masonry"
+                cols={mediaQueryMobile ? 3 : 1}
+                gap={4}
               >
-                <LockRightClick
-                  contextMenu={contextMenu}
-                  handleClose={handleClose}
-                />
-                <ImageListItem
-                  key={Number(item.id)}
-                  style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
-                  sx={{
-                    cursor: mediaQueryMobile ? 'pointer' : 'default',
-                    '&:hover': {
-                      transform: 'scale(1.002)',
-                    },
-                  }}
-                >
-                  <img
-                    src={`${item.imagePath}?w=248&fit=crop&auto=format`}
-                    srcSet={`${item.imagePath}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    alt={item.imageAlt}
-                    id={item.id.toString()}
-                    loading="lazy"
-                    title={item.gallery}
-                    onClick={openImageModal}
-                    onLoad={() => setLoaded(true)}
-                  />
-                </ImageListItem>
-              </motion.div>
-            ))}
-          </ImageList>
-        </Grid>
+                {gallery.map((image: IGalleryImage, index: number) => (
+                  <motion.div
+                    variants={imageVariant}
+                    initial="initial"
+                    animate="animate"
+                    transition={{ delay: index * 0.01 }}
+                    onContextMenu={handleContextMenu}
+                  >
+                    <LockRightClick
+                      contextMenu={contextMenu}
+                      handleClose={handleClose}
+                    />
+                    <ImageListItem
+                      key={Number(index)}
+                      style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
+                      sx={{
+                        cursor: mediaQueryMobile ? 'pointer' : 'default',
+                        '&:hover': {
+                          transform: 'scale(1.002)',
+                        },
+                      }}
+                    >
+                      <img
+                        src={`https:${image.file.url}`}
+                        srcSet={`https:${image.file.url}`}
+                        alt={image.title}
+                        loading="lazy"
+                        onClick={openImageModal}
+                        onLoad={() => setLoaded(true)}
+                      />
+                    </ImageListItem>
+                  </motion.div>
+                ))}
+              </ImageList>
+            )}
+          </Grid>
+          )
+        </>
       )}
     </>
   );

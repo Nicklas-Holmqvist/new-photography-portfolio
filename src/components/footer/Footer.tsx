@@ -29,7 +29,7 @@ export const Footer = () => {
       <Grid
         container
         display="flex"
-        flexDirection={'column'}
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         style={style.container}

@@ -105,7 +105,7 @@ export const Header = () => {
             <MenuListItem
               active={activeLink}
               activePage={activePage}
-              path="landscape"
+              path="landscapes"
               title="Landskap"
             />
           </motion.div>
@@ -117,7 +117,7 @@ export const Header = () => {
             <MenuListItem
               active={activeLink}
               activePage={activePage}
-              path="oldBuildings"
+              path="old-buildings"
               title="Gamla byggnader"
             />
           </motion.div>
