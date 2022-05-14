@@ -8,11 +8,13 @@ export const MenuListItem = (props: {
   path: string;
   title: string;
   active: string;
+  anchor: string;
   activePage: (event: string) => void;
 }) => {
   const context = useActiveGalleryContext();
   const [hover, setHover] = useState<boolean>(false);
-  const path: string = `/gallery/${props.path}`;
+  const path: string = `${props.path}`;
+
   const style = {
     normal: {
       textDecoration: 'none',
@@ -32,7 +34,7 @@ export const MenuListItem = (props: {
     <Grid>
       <Link
         style={
-          hover || context.activeLink === props.path
+          hover || context.activeLink === props.anchor
             ? style.hover
             : style.normal
         }
