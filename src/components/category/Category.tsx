@@ -38,7 +38,7 @@ export const Category = (props: { category: ICategory }) => {
       display="flex"
       justifyContent="space-between"
       flexDirection={props.category.reverseView ? 'row-reverse' : 'row'}
-      id={props.category.anchor}
+      id={props.category.path}
       style={style.container}
     >
       <Grid
@@ -75,7 +75,7 @@ export const Category = (props: { category: ICategory }) => {
                 variant="outlined"
                 onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate(`/gallery/${props.category.anchor}`);
+                  navigate(`${props.category.path}`);
                 }}
                 size="large"
                 sx={{ borderColor: 'grey' }}

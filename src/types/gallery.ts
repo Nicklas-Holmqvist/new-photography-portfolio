@@ -1,15 +1,22 @@
-export interface IGallery1 {
+export interface IGallery {
   title: string;
-  gallery: {
-    file: {
-      url: string;
-    };
+  galleryImages: IGalleryImage[];
+}
+
+export interface IGalleryImage {
+  title: string;
+  file: {
+    contentType: string;
+    imageDetails: IImageDetails;
+    fileName: string;
+    url: string;
   };
 }
 
-export interface IGallery {
-  id: number;
-  imagePath: string;
-  imageAlt: string;
-  gallery: string;
+export interface IImageDetails {
+  image: {
+    width: number;
+    height: number;
+  };
+  size: number;
 }

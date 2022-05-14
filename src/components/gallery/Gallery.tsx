@@ -4,42 +4,28 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+  MouseEvent,
+  BaseSyntheticEvent,
+} from 'react';
 import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
 
 import getGallery from '../../contentful/getGallery';
-import { IGallery } from '../../types';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
+import { IGalleryImage } from '../../types';
 import { LockRightClick } from '../helpers';
 import { useActiveGalleryContext } from '../../context/activeGallery';
 
-export interface IGallery1 {
-  title: string;
-  gallery: {
-    file: {
-      url: string;
-    }[];
-  };
-}
-
-export interface IGalleryInformation {
-  gallery: string;
-  title: string;
-  information: string;
-  imagePath: string;
-  imageAlt: string;
-  reverse: boolean;
-  anchor: string;
-  showBtn: boolean;
-}
 export const Gallery = () => {
   const context = useActiveGalleryContext();
   const params = useParams();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [modalImage, setModalImage] = useState<any>('');
+  const [modalImage, setModalImage] = useState<string>('');
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [test, setTest] = useState<any>([]);
+  const [gallery, setGallery] = useState<IGalleryImage[]>([]);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
@@ -68,7 +54,7 @@ export const Gallery = () => {
     mouseY: number;
   } | null>(null);
 
-  const handleContextMenu = (event: React.MouseEvent) => {
+  const handleContextMenu = (event: MouseEvent) => {
     event.preventDefault();
     setContextMenu(
       contextMenu === null
@@ -80,16 +66,11 @@ export const Gallery = () => {
     );
   };
 
-  const openImageModal = (e: any) => {
+  const openImageModal = (image: BaseSyntheticEvent) => {
     if (!mediaQueryMobile) return;
-    const target = e.target;
-    const image: IGallery = {
-      id: target.id,
-      imagePath: target.src,
-      imageAlt: target.alt,
-      gallery: target.title,
-    };
-    setModalImage(image);
+    const getImageUrl = image.target.src;
+
+    setModalImage(getImageUrl);
     setOpenModal(true);
   };
 
@@ -99,26 +80,23 @@ export const Gallery = () => {
 
   useEffect(() => {
     const getEntries = async () => {
-      // console.log(params.id);
-      setTest([]);
+      setGallery([]);
       const gallery = await getGallery(params.id as string);
       if (gallery?.length === 0 || gallery === undefined) {
         context.handleActiveLink('');
         return;
       }
-      // console.log(gallery);
-      setTest(gallery[0]);
+      setGallery(gallery[0].galleryImages);
       context.handleActiveLink(gallery[0].title);
     };
     getEntries();
-  }, [params]);
+  }, [context, params]);
 
   const imageVariant = {
     initial: { y: -10, opacity: 0 },
     animate: { y: 0, opacity: 1 },
   };
-
-  console.log(context.noGallery);
+  console.log(gallery);
 
   return (
     <>
@@ -154,7 +132,7 @@ export const Gallery = () => {
               <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
               <Typography>Gå tillbaka</Typography>
             </Grid>
-            {test.length === 0 ? (
+            {gallery.length === 0 ? (
               <></>
             ) : (
               <ImageList
@@ -162,7 +140,7 @@ export const Gallery = () => {
                 cols={mediaQueryMobile ? 3 : 1}
                 gap={4}
               >
-                {test!.galleryImages!.map((image: any, index: number) => (
+                {gallery.map((image: IGalleryImage, index: number) => (
                   <motion.div
                     variants={imageVariant}
                     initial="initial"

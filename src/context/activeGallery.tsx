@@ -10,7 +10,7 @@ export const ActiveGalleryContext = createContext<Context>(undefined!);
 type Context = {
   activeLink: string;
   noGallery: boolean;
-  handleActiveLink: (e: any) => void;
+  handleActiveLink: (e: string) => void;
 };
 
 export const ActiveGalleryProvider: FunctionComponent = ({ children }) => {
@@ -18,7 +18,6 @@ export const ActiveGalleryProvider: FunctionComponent = ({ children }) => {
   const [noGallery, setNoGallery] = useState<boolean>(false);
 
   const handleActiveLink = (galleryName: string) => {
-    console.log(galleryName);
     setActiveLink(galleryName);
     if (galleryName !== '') {
       setNoGallery(false);

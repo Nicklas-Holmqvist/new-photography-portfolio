@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import { sortBy } from 'lodash';
+import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import getCategories from '../../contentful/getCategories';
@@ -10,6 +11,7 @@ import { ICategory } from '../../types';
 import { useActiveGalleryContext } from '../../context/activeGallery';
 
 export const LandingPage = () => {
+  const params = useParams();
   const context = useActiveGalleryContext();
   const [categories, setCategories] = useState<any[]>();
 
@@ -22,8 +24,9 @@ export const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    context.handleActiveLink('');
-  }, [context]);
+    if (!params.id) return context.handleActiveLink('home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const categoryVariants = {
     initial: { y: 0, opacity: 0 },
@@ -35,6 +38,7 @@ export const LandingPage = () => {
   return (
     <Grid
       sx={{
+        height: '100%',
         width: '100%',
         margin: 'auto',
         marginTop: {
