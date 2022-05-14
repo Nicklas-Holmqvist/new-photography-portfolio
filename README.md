@@ -33,7 +33,7 @@ The galleryimage is to big but has Mui's masonry image list and a modal as popup
 ### Contentful
 
 #### Content models
-- Category (landingsPage)
+- Category (landingPage)
 - Gallery
 - Menu-item
 
