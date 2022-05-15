@@ -10,6 +10,8 @@ import { MobileMenu } from '../mobileMenu/MobileMenu';
 import { MenuListItem } from './components';
 import { IMenuItem } from '../../types';
 
+import './styles.css';
+
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
   const [menuItems, setMenuItems] = useState<IMenuItem[]>([]);
@@ -52,7 +54,7 @@ export const Header = () => {
   const sortedMenuItems = sortBy(menuItems, 'order');
 
   return (
-    <Grid container style={style.container} position="fixed">
+    <Grid container style={style.container} position="fixed" className="header">
       <Grid
         item
         flexDirection="row"

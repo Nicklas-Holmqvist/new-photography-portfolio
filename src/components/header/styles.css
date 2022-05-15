@@ -1,0 +1,17 @@
+.header {
+    transition: ease-in;
+    animation-name: header-animation;
+    animation-duration: 5s;
+    animation-delay: 4.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes header-animation {
+    0% {
+       top: -100px}
+    85% {
+        top: -100px}
+    100% {
+       top: 0;
+    }
+}

@@ -1,0 +1,13 @@
+.landingPage {
+    opacity: 0;
+    transition:linear;
+    animation-name: landingPage-animation;
+    animation-duration: 0.8s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes landingPage-animation {
+    from {opacity: 0}
+    to {opacity: 1}
+}

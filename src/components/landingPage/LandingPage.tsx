@@ -11,6 +11,8 @@ import { ICategory } from '../../types';
 import { IntroScreen } from '../introScreen';
 import { useActiveGalleryContext } from '../../context/activeGallery';
 
+import './styles.css';
+
 export const LandingPage = () => {
   const params = useParams();
   const context = useActiveGalleryContext();
@@ -30,6 +32,10 @@ export const LandingPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => setIsIntro(false), 8500);
+  });
+
   const categoryVariants = {
     initial: { y: 0, opacity: 0 },
     animate: { y: 0, opacity: 1 },
@@ -43,6 +49,7 @@ export const LandingPage = () => {
         <IntroScreen />
       ) : (
         <Grid
+          className="landingPage"
           sx={{
             height: '100%',
             width: '100%',
@@ -58,7 +65,7 @@ export const LandingPage = () => {
               variants={categoryVariants}
               initial="initial"
               animate="animate"
-              transition={{ delay: index * 0.5 }}
+              transition={{ delay: index * 1 }}
               key={index}
             >
               <Helmet>
