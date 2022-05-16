@@ -7,32 +7,27 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Grid, IconButton, Typography } from '@mui/material';
 
-import { ScrollToTop } from '../';
+import { motion } from 'framer-motion';
 
 export const Footer = () => {
   const [showToTop, setShowToTop] = useState<boolean>(false);
 
-  const style = {
-    container: {
-      maxWidth: 1400,
-      width: '100%',
-      margin: '0 auto',
-      padding: '16px 0',
-    },
-    icons: {
-      margin: '0 16px',
-      textDecoration: 'none',
-    },
-  };
   return (
     <VisibilitySensor onChange={() => setShowToTop(!showToTop)}>
-      <Grid
-        container
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        style={style.container}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          maxWidth: 1400,
+          width: '100%',
+          margin: '0 auto',
+          padding: '16px 0',
+        }}
       >
         <Grid
           item
@@ -135,8 +130,8 @@ export const Footer = () => {
             Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
           </Typography>
         </Grid>
-        {showToTop && <ScrollToTop />}
-      </Grid>
+        {/* {showToTop && <ScrollToTop />} */}
+      </motion.div>
     </VisibilitySensor>
   );
 };
