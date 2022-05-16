@@ -15,7 +15,6 @@ import './styles.css';
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
   const [menuItems, setMenuItems] = useState<IMenuItem[]>([]);
-  const [introHeader, setIntroHeader] = useState<boolean>(false);
   const style = {
     container: {
       backgroundColor: 'rgba(243, 243, 243,0.9)',
