@@ -7,18 +7,11 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import VisibilitySensor from 'react-visibility-sensor';
 import { Grid, IconButton, Typography } from '@mui/material';
 
-import { ScrollToTop } from '../';
 import { motion } from 'framer-motion';
 
 export const Footer = () => {
   const [showToTop, setShowToTop] = useState<boolean>(false);
 
-  const style = {
-    icons: {
-      margin: '0 16px',
-      textDecoration: 'none',
-    },
-  };
   return (
     <VisibilitySensor onChange={() => setShowToTop(!showToTop)}>
       <motion.div
