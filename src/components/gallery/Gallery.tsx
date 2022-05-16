@@ -175,7 +175,6 @@ export const Gallery = () => {
               </ImageList>
             )}
           </Grid>
-          )
         </>
       )}
     </>

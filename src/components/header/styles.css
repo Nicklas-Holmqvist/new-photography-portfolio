@@ -1,8 +1,9 @@
 .header {
+    top: -100px;
     transition: ease-in;
     animation-name: header-animation;
-    animation-duration: 5s;
-    animation-delay: 4.5s;
+    animation-duration: 0.8s;
+    animation-delay: 0.3s;
     animation-fill-mode: forwards;
 }
 

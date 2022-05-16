@@ -10,6 +10,7 @@ body {
   font-family: 'Permanent Marker', cursive;
   font-family: 'Poppins', sans-serif;
   font-family: 'Sen', sans-serif;
+  overflow:visible;
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 };

@@ -33,8 +33,13 @@ export const LandingPage = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setIsIntro(false), 8500);
-  });
+    const seenIntro = document.cookie;
+    if (seenIntro.includes('true')) setIsIntro(false);
+    setTimeout(() => {
+      document.cookie = 'intro=true';
+      setIsIntro(false);
+    }, 8500);
+  }, []);
 
   const categoryVariants = {
     initial: { y: 0, opacity: 0 },

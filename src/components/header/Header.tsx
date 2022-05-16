@@ -15,11 +15,11 @@ import './styles.css';
 export const Header = () => {
   const [activeLink, setActiveLink] = useState<string>('');
   const [menuItems, setMenuItems] = useState<IMenuItem[]>([]);
+  const [introHeader, setIntroHeader] = useState<boolean>(false);
   const style = {
     container: {
-      top: 0,
       backgroundColor: 'rgba(243, 243, 243,0.9)',
-      zIndex: 100,
+      zIndex: 90,
     },
     header: {
       padding: '0.5rem 2rem',
