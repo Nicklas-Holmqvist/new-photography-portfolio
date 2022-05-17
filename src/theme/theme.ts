@@ -13,7 +13,7 @@ declare module '@mui/material/styles' {
 export const theme = createTheme({
   typography: {
     fontFamily: [FONT_SECONDARY, 'sans-serif'].join(','),
-    fontWeightRegular: 400,
+    fontWeightRegular: 200,
     h1: {
       fontWeight: 600,
       fontSize: 56,

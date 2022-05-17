@@ -16,7 +16,8 @@ export const Layout = () => {
     <Grid
       container
       display="flex"
-      justifyContent="column"
+      flexDirection="column"
+      justifyContent="space-between"
       style={style}
       position="relative"
     >
