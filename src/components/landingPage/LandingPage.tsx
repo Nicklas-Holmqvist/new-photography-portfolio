@@ -49,7 +49,7 @@ export const LandingPage = () => {
   const filteredCategories: ICategory[] = sortBy(categories, 'order');
 
   return (
-    <>
+    <Grid container style={{ minHeight: 1200 }}>
       {isIntro ? (
         <IntroScreen />
       ) : (
@@ -70,7 +70,7 @@ export const LandingPage = () => {
               variants={categoryVariants}
               initial="initial"
               animate="animate"
-              transition={{ delay: index * 1 }}
+              transition={{ delay: index * 0.8 }}
               key={index}
             >
               <Helmet>
@@ -87,6 +87,6 @@ export const LandingPage = () => {
           ))}
         </Grid>
       )}
-    </>
+    </Grid>
   );
 };
