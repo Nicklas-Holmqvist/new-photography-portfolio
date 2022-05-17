@@ -58,7 +58,7 @@ export const LandingPage = () => {
             variants={categoryVariants}
             initial="initial"
             animate="animate"
-            transition={{ delay: index * 0.8 }}
+            transition={{ delay: index * 0.6 }}
             key={index}
           >
             <Helmet>
