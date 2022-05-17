@@ -49,7 +49,7 @@ export const LandingPage = () => {
   const filteredCategories: ICategory[] = sortBy(categories, 'order');
 
   return (
-    <Grid container style={{ minHeight: 1200 }}>
+    <Grid container style={{ minHeight: 500 * filteredCategories.length }}>
       {isIntro ? (
         <IntroScreen />
       ) : (
