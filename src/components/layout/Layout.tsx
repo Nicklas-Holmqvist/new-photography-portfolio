@@ -1,11 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 import ErrorBoundary from '../errorBoundry/ErrorBoundry';
-import { Gallery } from '../gallery';
-import { NoPageFound } from '../noPageFound/NoPageFound';
-import { LandingPage, Footer, Header } from '../index';
+import { AnimatedRouter } from '../AnimatedRouter';
+import { Header } from '../header';
+import { Footer } from '../footer';
 
 export const Layout = () => {
   const style = {
@@ -24,11 +25,9 @@ export const Layout = () => {
       <BrowserRouter>
         <ErrorBoundary>
           <Header />
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/gallery/:id" element={<Gallery />} />
-            <Route path="*" element={<NoPageFound />} />
-          </Routes>
+          <AnimatePresence exitBeforeEnter>
+            <AnimatedRouter />
+          </AnimatePresence>
           <Footer />
         </ErrorBoundary>
       </BrowserRouter>

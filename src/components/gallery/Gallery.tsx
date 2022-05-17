@@ -93,12 +93,18 @@ export const Gallery = () => {
   }, [context, params]);
 
   const imageVariant = {
-    initial: { y: -10, opacity: 0 },
+    initial: { y: -5, opacity: 0 },
     animate: { y: 0, opacity: 1 },
+    exit: { y: 0, opacity: 0 },
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Helmet>
         <title>Galleri | nicklasholmqvist.se</title>
         <meta name="galleri" content="Fotogalleri av Nicklas Holmqvist" />
@@ -106,77 +112,75 @@ export const Gallery = () => {
       {context.noGallery ? (
         <NoPageFound />
       ) : (
-        <>
-          <Grid container style={style.container} flexDirection="column">
-            {openModal && (
-              <ImageModal
-                image={modalImage}
-                open={openModal}
-                handleClose={closeModal}
-              />
-            )}
-            <Grid
-              item
-              flexDirection="row"
-              alignItems="center"
-              style={style.link}
-              sx={{
-                display: {
-                  xs: 'none',
-                  md: 'flex',
-                },
-              }}
-              onClick={() => navigate('/')}
-            >
-              <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
-              <Typography>Gå tillbaka</Typography>
-            </Grid>
-            {gallery.length === 0 ? (
-              <></>
-            ) : (
-              <ImageList
-                variant="masonry"
-                cols={mediaQueryMobile ? 3 : 1}
-                gap={4}
-              >
-                {gallery.map((image: IGalleryImage, index: number) => (
-                  <motion.div
-                    variants={imageVariant}
-                    initial="initial"
-                    animate="animate"
-                    transition={{ delay: index * 0.01 }}
-                    onContextMenu={handleContextMenu}
-                  >
-                    <LockRightClick
-                      contextMenu={contextMenu}
-                      handleClose={handleClose}
-                    />
-                    <ImageListItem
-                      key={Number(index)}
-                      style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
-                      sx={{
-                        cursor: mediaQueryMobile ? 'pointer' : 'default',
-                        '&:hover': {
-                          transform: 'scale(1.002)',
-                        },
-                      }}
-                    >
-                      <img
-                        src={`https:${image.file.url}`}
-                        srcSet={`https:${image.file.url}`}
-                        alt={image.title}
-                        loading="lazy"
-                        onClick={openImageModal}
-                        onLoad={() => setLoaded(true)}
-                      />
-                    </ImageListItem>
-                  </motion.div>
-                ))}
-              </ImageList>
-            )}
+        <Grid container style={style.container} flexDirection="column">
+          {openModal && (
+            <ImageModal
+              image={modalImage}
+              open={openModal}
+              handleClose={closeModal}
+            />
+          )}
+          <Grid
+            item
+            flexDirection="row"
+            alignItems="center"
+            style={style.link}
+            sx={{
+              display: {
+                xs: 'none',
+                md: 'flex',
+              },
+            }}
+            onClick={() => navigate('/')}
+          >
+            <ArrowBackIosNewIcon sx={{ pr: 1, pl: 3, fontSize: 16 }} />
+            <Typography>Gå tillbaka</Typography>
           </Grid>
-        </>
+          {gallery.length === 0 ? (
+            <></>
+          ) : (
+            <ImageList
+              variant="masonry"
+              cols={mediaQueryMobile ? 3 : 1}
+              gap={4}
+            >
+              {gallery.map((image: IGalleryImage, index: number) => (
+                <motion.div
+                  variants={imageVariant}
+                  initial="initial"
+                  animate="animate"
+                  transition={{ delay: index * 0.02, duraction: index * 0.02 }}
+                  onContextMenu={handleContextMenu}
+                >
+                  <LockRightClick
+                    contextMenu={contextMenu}
+                    handleClose={handleClose}
+                  />
+                  <ImageListItem
+                    key={Number(index)}
+                    style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
+                    sx={{
+                      cursor: mediaQueryMobile ? 'pointer' : 'default',
+                      '&:hover': {
+                        transform: 'scale(1.002)',
+                      },
+                    }}
+                  >
+                    <img
+                      src={`https:${image.file.url}`}
+                      srcSet={`https:${image.file.url}`}
+                      alt={image.title}
+                      loading="lazy"
+                      onClick={openImageModal}
+                      onLoad={() => setLoaded(true)}
+                    />
+                  </ImageListItem>
+                </motion.div>
+              ))}
+            </ImageList>
+          )}
+        </Grid>
       )}
-    </>
+    </motion.div>
   );
 };

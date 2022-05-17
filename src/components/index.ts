@@ -1,3 +1,4 @@
+export * from './AnimatedRouter';
 export * from './category';
 export * from './errorBoundry';
 export * from './footer';
