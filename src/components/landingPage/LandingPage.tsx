@@ -18,12 +18,14 @@ export const LandingPage = () => {
   const context = useActiveGalleryContext();
   const [categories, setCategories] = useState<any[]>();
   const [isIntro, setIsIntro] = useState<boolean>(true);
+  const [contentHeight, setContentHeight] = useState<string | number>('100vh');
 
   useEffect(() => {
     const getEntries = async () => {
       const categories = await getCategories();
       setCategories(categories);
     };
+    setTimeout(() => setContentHeight(500 * getEntries.length), 500);
     getEntries();
   }, []);
 
@@ -49,7 +51,7 @@ export const LandingPage = () => {
   const filteredCategories: ICategory[] = sortBy(categories, 'order');
 
   return (
-    <Grid container style={{ minHeight: '100vh' }}>
+    <Grid container style={{ minHeight: contentHeight }}>
       {isIntro ? (
         <IntroScreen />
       ) : (
