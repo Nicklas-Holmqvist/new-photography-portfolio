@@ -53,7 +53,7 @@ export const Category = (props: { category: ICategory }) => {
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.2, delay: 0.2 }}
+          transition={{ duration: 0.1, delay: 0.1 }}
         >
           <Grid
             item

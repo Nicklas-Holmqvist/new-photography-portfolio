@@ -93,8 +93,8 @@ export const Gallery = () => {
   }, [context, params]);
 
   const imageVariant = {
-    initial: { y: -5, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
+    initial: { y: -5, opacity: 0, scale: 0.9 },
+    animate: { y: 0, opacity: 1, scale: 1 },
     exit: { y: 0, opacity: 0 },
   };
 
@@ -103,7 +103,7 @@ export const Gallery = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <Helmet>
         <title>Galleri | nicklasholmqvist.se</title>
@@ -149,7 +149,10 @@ export const Gallery = () => {
                   variants={imageVariant}
                   initial="initial"
                   animate="animate"
-                  transition={{ delay: index * 0.02, duraction: index * 0.02 }}
+                  transition={{
+                    delay: index * 0.01,
+                    duraction: index * 0.01,
+                  }}
                   onContextMenu={handleContextMenu}
                 >
                   <LockRightClick
