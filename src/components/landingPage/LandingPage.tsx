@@ -5,9 +5,10 @@ import { sortBy } from 'lodash';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import getMeta from '../../contentful/getMeta';
 import getCategories from '../../contentful/getCategories';
 import { Category } from '../index';
-import { ICategory } from '../../types';
+import { ICategory, IMeta } from '../../types';
 import { useActiveGalleryContext } from '../../context/activeGallery';
 
 import './styles.css';
@@ -15,7 +16,8 @@ import './styles.css';
 export const LandingPage = () => {
   const params = useParams();
   const context = useActiveGalleryContext();
-  const [categories, setCategories] = useState<any[]>();
+  const [categories, setCategories] = useState<ICategory[]>();
+  const [meta, setMeta] = useState<IMeta[]>();
   const [contentHeight, setContentHeight] = useState<string | number>('100vh');
 
   const categoryVariants = {
@@ -33,6 +35,15 @@ export const LandingPage = () => {
   }, []);
 
   useEffect(() => {
+    const getMetaData = async () => {
+      const meta = await getMeta();
+      if (!meta) return;
+      setMeta(meta.filter((meta: IMeta) => meta.title.includes('Startsida')));
+    };
+    getMetaData();
+  }, []);
+
+  useEffect(() => {
     if (!params.id) return context.handleActiveLink('home');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,11 +53,8 @@ export const LandingPage = () => {
   return (
     <Grid container style={{ minHeight: contentHeight }}>
       <Helmet>
-        <title>Startsida | nicklasholmqvist.se</title>
-        <meta
-          name="description"
-          content="Fotografisk portfolio och CV av Nicklas Holmqvist"
-        />
+        <title>{meta?.[0].title}</title>
+        <meta name="description" content={meta?.[0].content} />
       </Helmet>
       <Grid
         className="landingPage"

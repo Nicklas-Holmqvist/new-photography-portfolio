@@ -16,7 +16,7 @@ import getGallery from '../../contentful/getGallery';
 import { Image } from './component';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
-import { IGalleryImage } from '../../types';
+import { IGalleryImage, IMeta } from '../../types';
 import { LockRightClick } from '../helpers';
 import { useActiveGalleryContext } from '../../context/activeGallery';
 
@@ -26,6 +26,7 @@ export const Gallery = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>('');
   const [gallery, setGallery] = useState<IGalleryImage[]>([]);
+  const [meta, setMeta] = useState<IMeta>();
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
 
@@ -93,7 +94,8 @@ export const Gallery = () => {
         return;
       }
       setGallery(gallery[0].galleryImages);
-      context.handleActiveLink(gallery[0].title);
+      setMeta(gallery[0].meta);
+      context.handleActiveLink(gallery[0].path);
     };
     getEntries();
   }, [context, params]);
@@ -106,8 +108,8 @@ export const Gallery = () => {
       transition={{ duration: 0.3 }}
     >
       <Helmet>
-        <title>Galleri | nicklasholmqvist.se</title>
-        <meta name="description" content="Fotogalleri av Nicklas Holmqvist" />
+        <title>{meta?.title}</title>
+        <meta name="description" content={meta?.content} />
       </Helmet>
       {context.noGallery ? (
         <NoPageFound />
