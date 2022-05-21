@@ -13,12 +13,12 @@ import React, {
 import { Grid, ImageList, Typography } from '@mui/material';
 
 import getGallery from '../../contentful/getGallery';
+import { Image } from './component';
 import { ImageModal } from '../imageModal';
 import { NoPageFound } from '../noPageFound/NoPageFound';
 import { IGalleryImage } from '../../types';
 import { LockRightClick } from '../helpers';
 import { useActiveGalleryContext } from '../../context/activeGallery';
-import { Image } from './component';
 
 export const Gallery = () => {
   const context = useActiveGalleryContext();

@@ -1,10 +1,6 @@
-import {
-  CircularProgress,
-  Grid,
-  ImageListItem,
-  useMediaQuery,
-} from '@mui/material';
+import { ImageListItem, useMediaQuery } from '@mui/material';
 import React, { useState } from 'react';
+
 import { IGalleryImage } from '../../../types';
 
 export const Image = (props: {
