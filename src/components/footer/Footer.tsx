@@ -9,6 +9,8 @@ import { Grid, IconButton, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 
 export const Footer = () => {
+  const date = new Date();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -38,6 +40,7 @@ export const Footer = () => {
           rel="noreferrer"
         >
           <IconButton
+            aria-label="instagram"
             sx={{
               m: {
                 xs: 1,
@@ -53,6 +56,7 @@ export const Footer = () => {
           rel="noreferrer"
         >
           <IconButton
+            aria-label="github"
             sx={{
               m: {
                 xs: 1,
@@ -68,6 +72,7 @@ export const Footer = () => {
           rel="noreferrer"
         >
           <IconButton
+            aria-label="linkedin"
             sx={{
               m: {
                 xs: 1,
@@ -83,6 +88,7 @@ export const Footer = () => {
           rel="noreferrer"
         >
           <IconButton
+            aria-label="email"
             sx={{
               m: {
                 xs: 1,
@@ -98,6 +104,7 @@ export const Footer = () => {
           rel="noreferrer"
         >
           <IconButton
+            aria-label="facebook"
             sx={{
               m: {
                 xs: 1,
@@ -123,7 +130,8 @@ export const Footer = () => {
             },
           }}
         >
-          Copyright © | 2022 - Nicklas Holmqvist - All rights reserved
+          `Copyright © | {date.getFullYear()} - Nicklas Holmqvist - All rights
+          reserved`
         </Typography>
       </Grid>
       {/* {showToTop && <ScrollToTop />} */}

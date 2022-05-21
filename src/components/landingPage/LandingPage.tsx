@@ -18,6 +18,11 @@ export const LandingPage = () => {
   const [categories, setCategories] = useState<any[]>();
   const [contentHeight, setContentHeight] = useState<string | number>('100vh');
 
+  const categoryVariants = {
+    initial: { y: 0, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
   useEffect(() => {
     const getEntries = async () => {
       const categories = await getCategories();
@@ -32,15 +37,17 @@ export const LandingPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const categoryVariants = {
-    initial: { y: 0, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
   const filteredCategories: ICategory[] = sortBy(categories, 'order');
 
   return (
     <Grid container style={{ minHeight: contentHeight }}>
+      <Helmet>
+        <title>Startsida | nicklasholmqvist.se</title>
+        <meta
+          name="description"
+          content="Fotografisk portfolio och CV av Nicklas Holmqvist"
+        />
+      </Helmet>
       <Grid
         className="landingPage"
         sx={{
@@ -61,13 +68,6 @@ export const LandingPage = () => {
             transition={{ delay: index * 0.6 }}
             key={index}
           >
-            <Helmet>
-              <title>Startsida | nicklasholmqvist.se</title>
-              <meta
-                name="startsida"
-                content="Fotografisk portfolio och CV av Nicklas Holmqvist"
-              />
-            </Helmet>
             <Grid item className="category-section">
               <Category category={category} />
             </Grid>

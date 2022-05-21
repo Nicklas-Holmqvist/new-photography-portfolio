@@ -45,6 +45,12 @@ export const Gallery = () => {
     },
   };
 
+  const imageVariant = {
+    initial: { y: -5, opacity: 0, scale: 0.9 },
+    animate: { y: 0, opacity: 1, scale: 1 },
+    exit: { y: 0, opacity: 0 },
+  };
+
   const handleClose = () => {
     setContextMenu(null);
   };
@@ -92,12 +98,6 @@ export const Gallery = () => {
     getEntries();
   }, [context, params]);
 
-  const imageVariant = {
-    initial: { y: -5, opacity: 0, scale: 0.9 },
-    animate: { y: 0, opacity: 1, scale: 1 },
-    exit: { y: 0, opacity: 0 },
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -107,7 +107,7 @@ export const Gallery = () => {
     >
       <Helmet>
         <title>Galleri | nicklasholmqvist.se</title>
-        <meta name="galleri" content="Fotogalleri av Nicklas Holmqvist" />
+        <meta name="description" content="Fotogalleri av Nicklas Holmqvist" />
       </Helmet>
       {context.noGallery ? (
         <NoPageFound />
@@ -146,6 +146,7 @@ export const Gallery = () => {
             >
               {gallery.map((image: IGalleryImage, index: number) => (
                 <motion.div
+                  key={index}
                   variants={imageVariant}
                   initial="initial"
                   animate="animate"
