@@ -114,12 +114,7 @@ export const Header = () => {
 
         <ul style={style.list}>
           {sortedMenuItems.map((item: IMenuItem, index: number) => (
-            <motion.div
-              initial={{ y: -5, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.1 }}
-              key={index}
-            >
+            <li style={{ listStyle: 'none' }} key={index}>
               <MenuListItem
                 active={activeLink}
                 activePage={activePage}
@@ -127,7 +122,7 @@ export const Header = () => {
                 title={item.title}
                 anchor={item.anchor}
               />
-            </motion.div>
+            </li>
           ))}
         </ul>
       </Grid>

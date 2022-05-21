@@ -2,14 +2,17 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none;
+  
   background-color: rgb(243, 243, 243);
+  
   font-size: 1.2rem;
+
   font-family: 'Jura', sans-serif;
   font-family: 'Nunito', sans-serif;
   font-family: 'Permanent Marker', cursive;
   font-family: 'Poppins', sans-serif;
   font-family: 'Sen', sans-serif;
+
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 };
