@@ -10,7 +10,7 @@ import React, {
   MouseEvent,
   BaseSyntheticEvent,
 } from 'react';
-import { Grid, ImageList, ImageListItem, Typography } from '@mui/material';
+import { Grid, ImageList, Typography } from '@mui/material';
 
 import getGallery from '../../contentful/getGallery';
 import { ImageModal } from '../imageModal';
@@ -18,13 +18,13 @@ import { NoPageFound } from '../noPageFound/NoPageFound';
 import { IGalleryImage } from '../../types';
 import { LockRightClick } from '../helpers';
 import { useActiveGalleryContext } from '../../context/activeGallery';
+import { Image } from './component';
 
 export const Gallery = () => {
   const context = useActiveGalleryContext();
   const params = useParams();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<string>('');
-  const [loaded, setLoaded] = useState<boolean>(false);
   const [gallery, setGallery] = useState<IGalleryImage[]>([]);
 
   const mediaQueryMobile = useMediaQuery('(min-width:600px)');
@@ -46,7 +46,7 @@ export const Gallery = () => {
   };
 
   const imageVariant = {
-    initial: { y: -5, opacity: 0, scale: 0.9 },
+    initial: { y: -5, opacity: 0, scale: 0.95 },
     animate: { y: 0, opacity: 1, scale: 1 },
     exit: { y: 0, opacity: 0 },
   };
@@ -160,25 +160,7 @@ export const Gallery = () => {
                     contextMenu={contextMenu}
                     handleClose={handleClose}
                   />
-                  <ImageListItem
-                    key={Number(index)}
-                    style={loaded ? {} : { opacity: 0, overflow: 'hidden' }}
-                    sx={{
-                      cursor: mediaQueryMobile ? 'pointer' : 'default',
-                      '&:hover': {
-                        transform: 'scale(1.002)',
-                      },
-                    }}
-                  >
-                    <img
-                      src={`https:${image.file.url}`}
-                      srcSet={`https:${image.file.url}`}
-                      alt={image.title}
-                      loading="lazy"
-                      onClick={openImageModal}
-                      onLoad={() => setLoaded(true)}
-                    />
-                  </ImageListItem>
+                  <Image image={image} handleModal={openImageModal} />
                 </motion.div>
               ))}
             </ImageList>

@@ -7,7 +7,7 @@ export interface IGalleryImage {
   title: string;
   file: {
     contentType: string;
-    imageDetails: IImageDetails;
+    details: IImageDetails;
     fileName: string;
     url: string;
   };
