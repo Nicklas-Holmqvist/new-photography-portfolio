@@ -130,8 +130,8 @@ export const Footer = () => {
             },
           }}
         >
-          `Copyright © | {date.getFullYear()} - Nicklas Holmqvist - All rights
-          reserved`
+          Copyright © | {date.getFullYear()} - Nicklas Holmqvist - All rights
+          reserved
         </Typography>
       </Grid>
       {/* {showToTop && <ScrollToTop />} */}
