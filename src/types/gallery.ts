@@ -5,6 +5,8 @@ export interface IGallery {
 
 export interface IGalleryImage {
   title: string;
+  path: string;
+  meta: IMeta;
   file: {
     contentType: string;
     details: IImageDetails;
@@ -19,4 +21,9 @@ export interface IImageDetails {
     height: number;
   };
   size: number;
+}
+
+export interface IMeta {
+  content: string;
+  title: string;
 }
